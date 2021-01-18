@@ -6,6 +6,7 @@ using HealthInsurance.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using HealthInsurance.Models;
 
 namespace HealthInsurance.Data
 {
@@ -15,6 +16,16 @@ namespace HealthInsurance.Data
             : base(options)
         {
         }
+
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Hospital> Hospitals { get; set; }
+        public DbSet<Policy> Policies { get; set; }
+        public DbSet<PolicyAction> PolicyActions { get; set; }
+        public DbSet<PolicyApproval> PolicyApprovals { get; set; }
+        public DbSet<PolicyEmployee> PolicyEmployees { get; set; }
+        public DbSet<PolicyRequest> PolicyRequests { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
