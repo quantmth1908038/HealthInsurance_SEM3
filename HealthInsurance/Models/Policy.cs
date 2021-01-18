@@ -15,5 +15,11 @@ namespace HealthInsurance.Models
 
         public int CompanyId { get; set; }
         public string HospitalId { get; set; }
+
+        public Company company { get; set; }
+        public Hospital hospital { get; set; }
+
+        public ICollection<PolicyEmployee> policyEmployees { get; set; }
+        public ICollection<PolicyRequest> policyRequests { get; set; }
     }
 }

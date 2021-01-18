@@ -14,5 +14,7 @@ namespace HealthInsurance.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string CompanyURL { get; set; }
+
+        public ICollection<Policy> policies { get; set; }
     }
 }

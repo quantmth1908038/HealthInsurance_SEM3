@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthInsurance.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace HealthInsurance.Areas.Identity.Data
@@ -9,5 +10,6 @@ namespace HealthInsurance.Areas.Identity.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public Employee employee { get; set; }
     }
 }
