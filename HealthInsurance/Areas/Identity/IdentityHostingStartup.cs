@@ -26,7 +26,7 @@ namespace HealthInsurance.Areas.Identity
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireLowercase = false;
-                    options.SignIn.RequireConfirmedAccount = true;
+                    options.SignIn.RequireConfirmedAccount = false;
                 })
                     .AddEntityFrameworkStores<HealthInsuranceDbContext>();
             });

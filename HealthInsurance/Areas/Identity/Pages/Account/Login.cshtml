@@ -89,22 +89,24 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Logout.jpg)"></div>
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(https://images.unsplash.com/photo-1543364195-bfe6e4932397?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80)"></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <div asp-validation-summary="All" class="text-danger"></div>
-                                <form class="user">
+                                <form class="user" id="account" method="post">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
                                     <div class="form-group">
-                                        <label asp-for="Input.Email"></label>
-                                        <input asp-for="Input.Email" class="form-control" />
+                                        <label asp-for="Input.Email" style="display: block; text-align: center"></label>
+                                        <input asp-for="Input.Email" class="form-control form-control-user" id="exampleInputEmail"
+                                               placeholder="Email Address">
                                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="Input.Password"></label>
-                                        <input asp-for="Input.Password" class="form-control" />
+                                        <label asp-for="Input.Password" style="display: block; text-align: center"></label>
+                                        <input asp-for="Input.Password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password">
                                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -116,15 +118,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                        <button type="submit" class="btn btn-primary" style="width: 100%; border-radius:20px; outline: none; padding: 9px">Log in</button>
                                     </div>
-                                    <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                    </a>
+
                                 </form>
                                 <hr>
                                 <div class="text-center">
