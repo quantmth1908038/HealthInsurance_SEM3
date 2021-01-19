@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,12 +9,17 @@ namespace HealthInsurance.Models
     public class Policy
     {
         public int PolicyId { get; set; }
+        [Column(TypeName = "varchar(50)")]
         public string PolicyName { get; set; }
+        [Column(TypeName = "varchar(150)")]
         public string PolicyDesc { get; set; }
+        [Column(TypeName = "decimal(8,2)")]
         public decimal Amount { get; set; }
+        [Column(TypeName = "decimal(8,2)")]
         public decimal Emi { get; set; }
 
         public int CompanyId { get; set; }
+        [Column(TypeName = "varchar(50)")]
         public string HospitalId { get; set; }
 
         public Company company { get; set; }

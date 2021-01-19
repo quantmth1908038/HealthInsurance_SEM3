@@ -40,6 +40,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     new Employee
                     {
                         Designation = "",
+                        Joindate = DateTime.Parse("2020-12-02"),
                         Salary = 1200,
                         FirstName = "Cristiano",
                         LastName = "Ronaldo",
@@ -52,6 +53,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     new Employee
                     {
                         Designation = "",
+                        Joindate = DateTime.Parse("2020-10-02"),
                         Salary = 1100,
                         FirstName = "Lionel",
                         LastName = "Messi",
@@ -70,6 +72,7 @@ namespace HealthInsurance.Areas.Identity.Data
                 context.Hospitals.AddRange(
                     new Hospital
                     {
+                        HospitalId = "vietduc",
                         HospitalName = "Viet Duc Hospital",
                         Phone = "11111",
                         Location = "Ha Noi, Viet Nam",
@@ -77,6 +80,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     },
                     new Hospital
                     {
+                        HospitalId = "bachmai",
                         HospitalName = "Bach Mai Hospital",
                         Phone = "222222",
                         Location = "Ha Noi, Viet Nam",
@@ -84,6 +88,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     },
                     new Hospital
                     {
+                        HospitalId = "k",
                         HospitalName = "K Hospital",
                         Phone = "22222212",
                         Location = "Ha Noi, Viet Nam",
@@ -103,7 +108,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         Amount = 12000000,
                         Emi = 1200,
                         CompanyId = 1,
-                        HospitalId = ""
+                        HospitalId = "vietduc"
                     },
 
                     new Policy
@@ -113,7 +118,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         Amount = 13000000,
                         Emi = 1300,
                         CompanyId = 1,
-                        HospitalId = ""
+                        HospitalId = "bachmai"
                     },
 
                      new Policy
@@ -123,7 +128,7 @@ namespace HealthInsurance.Areas.Identity.Data
                          Amount = 10000000,
                          Emi = 1000,
                          CompanyId = 1,
-                         HospitalId = ""
+                         HospitalId = "vietduc"
                      },
 
                       new Policy
@@ -133,7 +138,7 @@ namespace HealthInsurance.Areas.Identity.Data
                           Amount = 15000000,
                           Emi = 1500,
                           CompanyId = 1,
-                          HospitalId = ""
+                          HospitalId = "bachmai"
                       },
 
                        new Policy
@@ -143,13 +148,11 @@ namespace HealthInsurance.Areas.Identity.Data
                            Amount = 30000000,
                            Emi = 3000,
                            CompanyId = 1,
-                           HospitalId = ""
+                           HospitalId = "k"
                        }
                     );
                 context.SaveChanges();
-            }    
-
-           
+            }              
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model UserListViewModel
 
     <section id="main-content">
         <section class="wrapper">
@@ -25,7 +26,7 @@
                         </div>
                         <div class="col-md-8 market-update-left">
                             <h4>Users</h4>
-                            <h3>1,250</h3>
+                            <h3>@Model.TotalUser</h3>
                             <p>Other hand, we denounce</p>
                         </div>
                         <div class="clearfix"> </div>
@@ -38,7 +39,7 @@
                         </div>
                         <div class="col-md-8 market-update-left">
                             <h4>Sales</h4>
-                            <h3>1,500</h3>
+                            <h3>@Model.TotalPolicyAction</h3>
                             <p>Other hand, we denounce</p>
                         </div>
                         <div class="clearfix"> </div>
@@ -51,7 +52,7 @@
                         </div>
                         <div class="col-md-8 market-update-left">
                             <h4>Orders</h4>
-                            <h3>1,500</h3>
+                            <h3>@Model.TotalPolicyRequest</h3>
                             <p>Other hand, we denounce</p>
                         </div>
                         <div class="clearfix"> </div>

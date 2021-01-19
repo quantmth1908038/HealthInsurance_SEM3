@@ -6,22 +6,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HealthInsurance.Models;
+using HealthInsurance.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using HealthInsurance.Models.ViewModels;
 
 namespace HealthInsurance.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IFHealthInsuranceRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger)
+        UserManager<IdentityUser> UserManager;
+        RoleManager<IdentityRole> RoleManager;
+
+        public HomeController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, IFHealthInsuranceRepository repository)
         {
-            _logger = logger;
+            UserManager = userManager;
+            RoleManager = roleManager;
+            _repository = repository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() 
+            => View(new UserListViewModel 
+        { 
+            TotalUser = UserManager.Users.Count(),
+            TotalPolicyRequest = _repository.PolicyRequests.Count(),
+            TotalPolicyAction = _repository.PolicyActions.Count(),
+
+            listUser = UserManager.Users.ToList(),
+            listRole = RoleManager.Roles.ToList(),
+        });
+       
 
         public IActionResult Privacy()
         {

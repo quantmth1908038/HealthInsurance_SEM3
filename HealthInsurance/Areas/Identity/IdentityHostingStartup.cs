@@ -20,7 +20,14 @@ namespace HealthInsurance.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("HealthInsuranceDbContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<ApplicationUser>(options => {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                    options.SignIn.RequireConfirmedAccount = true;
+                })
                     .AddEntityFrameworkStores<HealthInsuranceDbContext>();
             });
         }
