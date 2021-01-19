@@ -89,31 +89,35 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(https://i.pinimg.com/originals/10/20/4e/10204e2cf94ed01b71805a97cdf1047b.jpg)"></div>
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Logout.jpg)"></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
+                                <div asp-validation-summary="All" class="text-danger"></div>
                                 <form class="user">
                                     <div class="form-group">
-                                        <input  asp-for="Input.Email" type="email" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
-                                               placeholder="Enter Email Address...">
+                                        <label asp-for="Input.Email"></label>
+                                        <input asp-for="Input.Email" class="form-control" />
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for="Input.Password" type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Password">
+                                        <label asp-for="Input.Password"></label>
+                                        <input asp-for="Input.Password" class="form-control" />
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input asp-for="Input.RememberMe" type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label  asp-for="Input.RememberMe" class="custom-control-label" for="customCheck">
+                                        <div class="checkbox">
+                                            <label asp-for="Input.RememberMe">
+                                                <input asp-for="Input.RememberMe" />
                                                 @Html.DisplayNameFor(m => m.Input.RememberMe)
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Log in</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                    </div>
                                     <hr>
                                     <a href="index.html" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Login with Google

@@ -9,9 +9,10 @@ using HealthInsurance.Models;
 using HealthInsurance.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using HealthInsurance.Models.ViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 namespace HealthInsurance.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IFHealthInsuranceRepository _repository;

@@ -53,7 +53,7 @@ namespace HealthInsurance.Migrations
                     CompanyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Address = table.Column<string>(type: "varchar(150", nullable: true),
+                    Address = table.Column<string>(type: "varchar(150)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(20)", nullable: true),
                     CompanyURL = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
