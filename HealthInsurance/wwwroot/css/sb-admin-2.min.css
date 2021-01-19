@@ -1,0 +1,589 @@
+/*!
+ * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
+ */ /*!
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+:root {
+    --blue: #4e73df;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #e74a3b;
+    --orange: #fd7e14;
+    --yellow: #f6c23e;
+    --green: #1cc88a;
+    --teal: #20c9a6;
+    --cyan: #36b9cc;
+    --white: #fff;
+    --gray: #858796;
+    --gray-dark: #5a5c69;
+    --primary: #4e73df;
+    --secondary: #858796;
+    --success: #1cc88a;
+    --info: #36b9cc;
+    --warning: #f6c23e;
+    --danger: #e74a3b;
+    --light: #f8f9fc;
+    --dark: #5a5c69;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Nunito",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace
+}
+
+*, ::after, ::before {
+    box-sizing: border-box
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block
+}
+
+body {
+    margin: 0;
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #858796;
+    text-align: left;
+    background-color: #fff
+}
+
+
+
+
+
+
+
+
+
+@media (min-width:768px) {
+    .chart-bar {
+        height: 20rem
+    }
+}
+
+.chart-pie {
+    position: relative;
+    height: 15rem;
+    width: 100%
+}
+
+@media (min-width:768px) {
+    .chart-pie {
+        height: calc(20rem - 43px) !important
+    }
+}
+
+.bg-login-image {
+    background: url(https://github.com/nddat1908/T1908A_Sem3/blob/master/ImageSubjectHeath/Login-Image.jpg);
+    background-position: center;
+    background-size: cover
+}
+
+.bg-register-image {
+    background: url(https://github.com/nddat1908/T1908A_Sem3/blob/master/ImageSubjectHeath/Logout.jpg);
+    background-position: center;
+    background-size: cover
+}
+
+.bg-password-image {
+    background: url(https://source.unsplash.com/oWTW-jNGl9I/600x800);
+    background-position: center;
+    background-size: cover
+}
+
+form.user .custom-checkbox.small label {
+    line-height: 1.5rem
+}
+
+form.user .form-control-user {
+    font-size: .8rem;
+    border-radius: 10rem;
+    padding: 1.5rem 1rem
+}
+
+form.user .btn-user {
+    font-size: .8rem;
+    border-radius: 10rem;
+    padding: .75rem 1rem
+}
+
+.btn-google {
+    color: #fff;
+    background-color: #ea4335;
+    border-color: #fff
+}
+
+    .btn-google:hover {
+        color: #fff;
+        background-color: #e12717;
+        border-color: #e6e6e6
+    }
+
+    .btn-google.focus, .btn-google:focus {
+        color: #fff;
+        background-color: #e12717;
+        border-color: #e6e6e6;
+        box-shadow: 0 0 0 .2rem rgba(255,255,255,.5)
+    }
+
+    .btn-google.disabled, .btn-google:disabled {
+        color: #fff;
+        background-color: #ea4335;
+        border-color: #fff
+    }
+
+    .btn-google:not(:disabled):not(.disabled).active, .btn-google:not(:disabled):not(.disabled):active, .show > .btn-google.dropdown-toggle {
+        color: #fff;
+        background-color: #d62516;
+        border-color: #dfdfdf
+    }
+
+        .btn-google:not(:disabled):not(.disabled).active:focus, .btn-google:not(:disabled):not(.disabled):active:focus, .show > .btn-google.dropdown-toggle:focus {
+            box-shadow: 0 0 0 .2rem rgba(255,255,255,.5)
+        }
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #fff
+}
+
+    .btn-facebook:hover {
+        color: #fff;
+        background-color: #30497c;
+        border-color: #e6e6e6
+    }
+
+    .btn-facebook.focus, .btn-facebook:focus {
+        color: #fff;
+        background-color: #30497c;
+        border-color: #e6e6e6;
+        box-shadow: 0 0 0 .2rem rgba(255,255,255,.5)
+    }
+
+    .btn-facebook.disabled, .btn-facebook:disabled {
+        color: #fff;
+        background-color: #3b5998;
+        border-color: #fff
+    }
+
+    .btn-facebook:not(:disabled):not(.disabled).active, .btn-facebook:not(:disabled):not(.disabled):active, .show > .btn-facebook.dropdown-toggle {
+        color: #fff;
+        background-color: #2d4373;
+        border-color: #dfdfdf
+    }
+
+        .btn-facebook:not(:disabled):not(.disabled).active:focus, .btn-facebook:not(:disabled):not(.disabled):active:focus, .show > .btn-facebook.dropdown-toggle:focus {
+            box-shadow: 0 0 0 .2rem rgba(255,255,255,.5)
+        }
+
+.error {
+    color: #5a5c69;
+    font-size: 7rem;
+    position: relative;
+    line-height: 1;
+    width: 12.5rem
+}
+
+@-webkit-keyframes noise-anim {
+    0% {
+        clip: rect(10px,9999px,83px,0)
+    }
+
+    5% {
+        clip: rect(2px,9999px,65px,0)
+    }
+
+    10% {
+        clip: rect(8px,9999px,54px,0)
+    }
+
+    15% {
+        clip: rect(24px,9999px,22px,0)
+    }
+
+    20% {
+        clip: rect(19px,9999px,84px,0)
+    }
+
+    25% {
+        clip: rect(19px,9999px,10px,0)
+    }
+
+    30% {
+        clip: rect(27px,9999px,77px,0)
+    }
+
+    35% {
+        clip: rect(74px,9999px,34px,0)
+    }
+
+    40% {
+        clip: rect(34px,9999px,64px,0)
+    }
+
+    45% {
+        clip: rect(83px,9999px,47px,0)
+    }
+
+    50% {
+        clip: rect(23px,9999px,70px,0)
+    }
+
+    55% {
+        clip: rect(55px,9999px,49px,0)
+    }
+
+    60% {
+        clip: rect(90px,9999px,21px,0)
+    }
+
+    65% {
+        clip: rect(58px,9999px,63px,0)
+    }
+
+    70% {
+        clip: rect(77px,9999px,11px,0)
+    }
+
+    75% {
+        clip: rect(6px,9999px,72px,0)
+    }
+
+    80% {
+        clip: rect(27px,9999px,57px,0)
+    }
+
+    85% {
+        clip: rect(89px,9999px,54px,0)
+    }
+
+    90% {
+        clip: rect(55px,9999px,4px,0)
+    }
+
+    95% {
+        clip: rect(36px,9999px,91px,0)
+    }
+
+    100% {
+        clip: rect(19px,9999px,71px,0)
+    }
+}
+
+@keyframes noise-anim {
+    0% {
+        clip: rect(10px,9999px,83px,0)
+    }
+
+    5% {
+        clip: rect(2px,9999px,65px,0)
+    }
+
+    10% {
+        clip: rect(8px,9999px,54px,0)
+    }
+
+    15% {
+        clip: rect(24px,9999px,22px,0)
+    }
+
+    20% {
+        clip: rect(19px,9999px,84px,0)
+    }
+
+    25% {
+        clip: rect(19px,9999px,10px,0)
+    }
+
+    30% {
+        clip: rect(27px,9999px,77px,0)
+    }
+
+    35% {
+        clip: rect(74px,9999px,34px,0)
+    }
+
+    40% {
+        clip: rect(34px,9999px,64px,0)
+    }
+
+    45% {
+        clip: rect(83px,9999px,47px,0)
+    }
+
+    50% {
+        clip: rect(23px,9999px,70px,0)
+    }
+
+    55% {
+        clip: rect(55px,9999px,49px,0)
+    }
+
+    60% {
+        clip: rect(90px,9999px,21px,0)
+    }
+
+    65% {
+        clip: rect(58px,9999px,63px,0)
+    }
+
+    70% {
+        clip: rect(77px,9999px,11px,0)
+    }
+
+    75% {
+        clip: rect(6px,9999px,72px,0)
+    }
+
+    80% {
+        clip: rect(27px,9999px,57px,0)
+    }
+
+    85% {
+        clip: rect(89px,9999px,54px,0)
+    }
+
+    90% {
+        clip: rect(55px,9999px,4px,0)
+    }
+
+    95% {
+        clip: rect(36px,9999px,91px,0)
+    }
+
+    100% {
+        clip: rect(19px,9999px,71px,0)
+    }
+}
+
+.error:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 #e74a3b;
+    top: 0;
+    color: #5a5c69;
+    background: #f8f9fc;
+    overflow: hidden;
+    clip: rect(0,900px,0,0);
+    animation: noise-anim 2s infinite linear alternate-reverse
+}
+
+@-webkit-keyframes noise-anim-2 {
+    0% {
+        clip: rect(37px,9999px,52px,0)
+    }
+
+    5% {
+        clip: rect(77px,9999px,64px,0)
+    }
+
+    10% {
+        clip: rect(22px,9999px,93px,0)
+    }
+
+    15% {
+        clip: rect(38px,9999px,90px,0)
+    }
+
+    20% {
+        clip: rect(17px,9999px,20px,0)
+    }
+
+    25% {
+        clip: rect(20px,9999px,39px,0)
+    }
+
+    30% {
+        clip: rect(55px,9999px,43px,0)
+    }
+
+    35% {
+        clip: rect(72px,9999px,8px,0)
+    }
+
+    40% {
+        clip: rect(17px,9999px,94px,0)
+    }
+
+    45% {
+        clip: rect(87px,9999px,64px,0)
+    }
+
+    50% {
+        clip: rect(54px,9999px,26px,0)
+    }
+
+    55% {
+        clip: rect(89px,9999px,22px,0)
+    }
+
+    60% {
+        clip: rect(3px,9999px,3px,0)
+    }
+
+    65% {
+        clip: rect(60px,9999px,57px,0)
+    }
+
+    70% {
+        clip: rect(68px,9999px,88px,0)
+    }
+
+    75% {
+        clip: rect(39px,9999px,4px,0)
+    }
+
+    80% {
+        clip: rect(40px,9999px,89px,0)
+    }
+
+    85% {
+        clip: rect(1px,9999px,91px,0)
+    }
+
+    90% {
+        clip: rect(31px,9999px,43px,0)
+    }
+
+    95% {
+        clip: rect(51px,9999px,93px,0)
+    }
+
+    100% {
+        clip: rect(21px,9999px,67px,0)
+    }
+}
+
+@keyframes noise-anim-2 {
+    0% {
+        clip: rect(37px,9999px,52px,0)
+    }
+
+    5% {
+        clip: rect(77px,9999px,64px,0)
+    }
+
+    10% {
+        clip: rect(22px,9999px,93px,0)
+    }
+
+    15% {
+        clip: rect(38px,9999px,90px,0)
+    }
+
+    20% {
+        clip: rect(17px,9999px,20px,0)
+    }
+
+    25% {
+        clip: rect(20px,9999px,39px,0)
+    }
+
+    30% {
+        clip: rect(55px,9999px,43px,0)
+    }
+
+    35% {
+        clip: rect(72px,9999px,8px,0)
+    }
+
+    40% {
+        clip: rect(17px,9999px,94px,0)
+    }
+
+    45% {
+        clip: rect(87px,9999px,64px,0)
+    }
+
+    50% {
+        clip: rect(54px,9999px,26px,0)
+    }
+
+    55% {
+        clip: rect(89px,9999px,22px,0)
+    }
+
+    60% {
+        clip: rect(3px,9999px,3px,0)
+    }
+
+    65% {
+        clip: rect(60px,9999px,57px,0)
+    }
+
+    70% {
+        clip: rect(68px,9999px,88px,0)
+    }
+
+    75% {
+        clip: rect(39px,9999px,4px,0)
+    }
+
+    80% {
+        clip: rect(40px,9999px,89px,0)
+    }
+
+    85% {
+        clip: rect(1px,9999px,91px,0)
+    }
+
+    90% {
+        clip: rect(31px,9999px,43px,0)
+    }
+
+    95% {
+        clip: rect(51px,9999px,93px,0)
+    }
+
+    100% {
+        clip: rect(21px,9999px,67px,0)
+    }
+}
+
+.error:before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 1px 0 #4e73df;
+    top: 0;
+    color: #5a5c69;
+    background: #f8f9fc;
+    overflow: hidden;
+    clip: rect(0,900px,0,0);
+    animation: noise-anim-2 3s infinite linear alternate-reverse
+}
+
+footer.sticky-footer {
+    padding: 2rem 0;
+    flex-shrink: 0
+}
+
+    footer.sticky-footer .copyright {
+        line-height: 1;
+        font-size: .8rem
+    }
+
+body.sidebar-toggled footer.sticky-footer {
+    width: 100%
+}
