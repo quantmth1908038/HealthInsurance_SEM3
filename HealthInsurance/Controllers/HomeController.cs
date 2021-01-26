@@ -10,33 +10,45 @@ using HealthInsurance.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using HealthInsurance.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using HealthInsurance.Data;
+
 namespace HealthInsurance.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private IFHealthInsuranceRepository _repository;
+        private HealthInsuranceDbContext _repository;
+        private RoleManager<IdentityRole> roleManager;
 
-        UserManager<IdentityUser> UserManager;
-        RoleManager<IdentityRole> RoleManager;
-
-        public HomeController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, IFHealthInsuranceRepository repository)
+        public HomeController(HealthInsuranceDbContext repository, RoleManager<IdentityRole> roleManager)
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
             _repository = repository;
+            this.roleManager = roleManager;
         }
 
-        public IActionResult Index() 
-            => View(new UserListViewModel 
-        { 
-            TotalUser = UserManager.Users.Count(),
-            TotalPolicyRequest = _repository.PolicyRequests.Count(),
-            TotalPolicyAction = _repository.PolicyActions.Count(),
-
-            listUser = UserManager.Users.ToList(),
-            listRole = RoleManager.Roles.ToList(),
-        });
+        public IActionResult Index()
+        {
+            var ListUsers = _repository.Users.ToList();
+            List<ListUserRole> ListUserRoles = new List<ListUserRole>();
+            foreach(var user in ListUsers)
+            {
+                var UserRole = _repository.UserRoles.Where(x => x.UserId == user.Id).Select(x => x.RoleId).FirstOrDefault();
+                ListUserRole listUserRole = new ListUserRole
+                {
+                    User = user,
+                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault()
+                };
+                ListUserRoles.Add(listUserRole);
+            }
+                
+            return View(new UserListViewModel
+            {
+                TotalUser = _repository.Users.Count(),
+                TotalPolicyRequest = _repository.PolicyRequests.Count(),
+                TotalPolicyAction = _repository.PolicyActions.Count(),
+                ListUserRoles = ListUserRoles
+            });
+        }
        
 
         public IActionResult Privacy()
