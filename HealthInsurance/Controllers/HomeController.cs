@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using HealthInsurance.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using HealthInsurance.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace HealthInsurance.Controllers
 {
@@ -36,7 +37,7 @@ namespace HealthInsurance.Controllers
                 ListUserRole listUserRole = new ListUserRole
                 {
                     User = user,
-                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault()
+                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault() 
                 };
                 ListUserRoles.Add(listUserRole);
             }
@@ -49,7 +50,22 @@ namespace HealthInsurance.Controllers
                 ListUserRoles = ListUserRoles
             });
         }
-       
+
+        public IActionResult CreateRole() => View(roleManager.Roles);
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole([Required] string name)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
+                if (result.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    Error();
+            }
+            return View();
+        }
 
         public IActionResult Privacy()
         {
