@@ -271,7 +271,7 @@ ul.sidebar-menu li a {
 
 .wrapper {
     display: inline-block;
-    margin-top: 80px;
+    margin-top: 45px;
     padding: 15px;
     width: 100%;
 }
@@ -2013,7 +2013,7 @@ ul.bs-glyphicons-list {
 }
 
 .table-agile-info {
-    background: #eef9f0;
+    background: #0c8491;
     padding: 2em;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
