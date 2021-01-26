@@ -27,7 +27,7 @@ namespace HealthInsurance.Controllers
             this.roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var ListUsers = _repository.Users.ToList();
             List<ListUserRole> ListUserRoles = new List<ListUserRole>();
@@ -41,6 +41,12 @@ namespace HealthInsurance.Controllers
                 };
                 ListUserRoles.Add(listUserRole);
             }
+
+            await roleManager.CreateAsync(new IdentityRole("Administrator"));
+            await roleManager.CreateAsync(new IdentityRole("Manager"));
+            await roleManager.CreateAsync(new IdentityRole("Finance Manager"));
+            await roleManager.CreateAsync(new IdentityRole("Staff"));
+            await roleManager.CreateAsync(new IdentityRole("User"));
                 
             return View(new UserListViewModel
             {
@@ -51,20 +57,10 @@ namespace HealthInsurance.Controllers
             });
         }
 
-        public IActionResult CreateRole() => View(roleManager.Roles);
-
-        [HttpPost]
-        public async Task<IActionResult> CreateRole([Required] string name)
+        [HttpGet]
+        public IActionResult EditUser(string UserId)
         {
-            if (ModelState.IsValid)
-            {
-                IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
-                if (result.Succeeded)
-                    return RedirectToAction("Index");
-                else
-                    Error();
-            }
-            return View();
+            return View(_repository.Users.Where(x => x.Id == UserId).FirstOrDefault());
         }
 
         public IActionResult Privacy()
