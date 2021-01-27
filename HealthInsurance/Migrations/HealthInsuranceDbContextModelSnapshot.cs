@@ -92,7 +92,7 @@ namespace HealthInsurance.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("varchar(150");
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -203,7 +203,7 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PolicyDesc")
-                        .HasColumnType("varchar(150)");
+                        .HasColumnType("ntext");
 
                     b.Property<string>("PolicyName")
                         .HasColumnType("varchar(50)");

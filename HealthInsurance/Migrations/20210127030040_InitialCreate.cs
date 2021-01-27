@@ -53,7 +53,7 @@ namespace HealthInsurance.Migrations
                     CompanyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Address = table.Column<string>(type: "varchar(150)", nullable: true),
+                    Address = table.Column<string>(type: "varchar(250)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(20)", nullable: true),
                     CompanyURL = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
@@ -220,11 +220,11 @@ namespace HealthInsurance.Migrations
                     PolicyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
-                    PolicyDesc = table.Column<string>(type: "varchar(150)", nullable: true),
+                    PolicyDesc = table.Column<string>(type: "ntext", nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
                     Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
-                    CompanyId = table.Column<int>(nullable: true),
-                    HospitalId = table.Column<string>(type: "varchar(50)", nullable: true)
+                    CompanyId = table.Column<int>(nullable: false),
+                    HospitalId = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {

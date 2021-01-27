@@ -13,7 +13,7 @@ namespace HealthInsurance.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string CompanyName { get; set; }
-        [Column(TypeName = "varchar(150")]
+        [Column(TypeName = "varchar(250)")]
         public string Address { get; set; }
         [Column(TypeName = "varchar(20)")]
         public string Phone { get; set; }

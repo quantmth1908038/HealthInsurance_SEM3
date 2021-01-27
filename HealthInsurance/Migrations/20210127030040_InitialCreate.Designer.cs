@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthInsurance.Migrations
 {
     [DbContext(typeof(HealthInsuranceDbContext))]
-    [Migration("20210119080130_InitialCreate")]
+    [Migration("20210127030040_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -94,7 +94,7 @@ namespace HealthInsurance.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("varchar(150");
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -205,7 +205,7 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PolicyDesc")
-                        .HasColumnType("varchar(150)");
+                        .HasColumnType("ntext");
 
                     b.Property<string>("PolicyName")
                         .HasColumnType("varchar(50)");
