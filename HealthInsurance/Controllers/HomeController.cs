@@ -20,11 +20,13 @@ namespace HealthInsurance.Controllers
     {
         private HealthInsuranceDbContext _repository;
         private RoleManager<IdentityRole> roleManager;
+        private UserManager<ApplicationUser> _userManager;
 
-        public HomeController(HealthInsuranceDbContext repository, RoleManager<IdentityRole> roleManager)
+        public HomeController(HealthInsuranceDbContext repository, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _repository = repository;
             this.roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -60,7 +62,24 @@ namespace HealthInsurance.Controllers
         [HttpGet]
         public IActionResult EditUser(string UserId)
         {
-            return View(_repository.Users.Where(x => x.Id == UserId).FirstOrDefault());
+            return View(new SetUserRole { 
+                User = _repository.Users.Where(x => x.Id == UserId).FirstOrDefault(),
+                Roles = roleManager.Roles.ToList()
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(ApplicationUser user, IdentityRole role)
+        {
+            var User = _repository.Users.Where(x => x.UserName == user.UserName).FirstOrDefault();
+            var roles = await _userManager.GetRolesAsync(User);
+            var check = await _userManager.RemoveFromRolesAsync(User, roles.ToArray());
+            var result = await _userManager.AddToRoleAsync(User, role.Name);
+            if(result.Succeeded && check.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error");
         }
 
         public IActionResult Privacy()
