@@ -15,7 +15,8 @@ namespace HealthInsurance.Areas.Identity.Data
     {
         public static void EnsurePopulated(IApplicationBuilder app)
         {
-            HealthInsuranceDbContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<HealthInsuranceDbContext>();
+            HealthInsuranceDbContext context = app.ApplicationServices
+                .CreateScope().ServiceProvider.GetRequiredService<HealthInsuranceDbContext>();
             if(context.Database.GetAppliedMigrations().Any())
             {
                 context.Database.Migrate();
