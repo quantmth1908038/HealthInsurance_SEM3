@@ -1,0 +1,115 @@
+﻿@model HealthInsurance.Models.PolicyApproval
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!--<h2>Create Approval</h2>
+
+<h4>PolicyApproval</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PolicyApprovalId" class="control-label"></label>
+                <input asp-for="PolicyApprovalId" class="form-control" />
+                <span asp-validation-for="PolicyApprovalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reason" class="control-label"></label>
+                <input asp-for="Reason" class="form-control" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>-->
+            @*<div class="form-group">
+                <label asp-for="PolicyRequestId" class="control-label"></label>
+                <input asp-for="PolicyRequestId" class="form-control" />
+                <span asp-validation-for="PolicyRequestId" class="text-danger"></span>
+            </div>*@
+            <!--<div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>-->
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="form-w3layouts">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Create Approval
+                        </header>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="form-group">
+                                        <input type="hidden" asp-for="PolicyApprovalId" />
+                                        <label asp-for="Date" class="control-label"></label>
+                                        <input asp-for="Date" class="form-control" />
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Amount" class="control-label"></label>
+                                        <input asp-for="Amount" class="form-control" />
+                                        <span asp-validation-for="Amount" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Status" class="control-label"></label>
+                                        <input asp-for="Status" class="form-control" />
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Reason" class="control-label"></label>
+                                        <input asp-for="Reason" class="form-control" />
+                                        <span asp-validation-for="Reason" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="PolicyRequestId" class="control-label"></label>
+                                        <input asp-for="PolicyRequestId" class="form-control" />
+                                        <span asp-validation-for="PolicyRequestId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                        <a asp-action="Index" class="btn btn-outline-success">Back</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
