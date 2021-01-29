@@ -1,0 +1,83 @@
+﻿@model HealthInsurance.Models.PolicyAction
+
+@{
+    ViewData["Title"] = "DetailsAction";
+}
+
+
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="form-w3layouts">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Details PolicyAction
+                        </header>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <div>
+                                    <dl class="dl-horizontal">
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PolicyActionId)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PolicyActionId)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PolicyName)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PolicyName)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Policydes)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Policydes)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PolicyAmount)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PolicyAmount)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Emi)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Emi)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PolicyDurationInMonths)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PolicyDurationInMonths)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PolicyApprovalId)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PolicyApprovalId)
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div>
+                                    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+                                    <input type="submit" value="Edit" class="btn btn-default" />
+                                    <a asp-action="Index" class="btn btn-outline-success">Back</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

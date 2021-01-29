@@ -50,27 +50,48 @@ namespace HealthInsurance.Controllers
 
         //}
 
-        // GET: FinancialmanagrmentController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-        public async Task<IActionResult> Details(int? id)
+        //GET: FinancialmanagrmentController/Details/5
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var approval = await _Db.PolicyApprovals
-                .FirstOrDefaultAsync(m => m.PolicyApprovalId == id);
-            if (approval == null)
-            {
-                return NotFound();
-            }
-
-            return View(approval);
+            return View();
         }
+        public ActionResult DetailsAction(int id)
+        {
+            return View();
+        }
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var approval = await _Db.PolicyApprovals
+        //        .FirstOrDefaultAsync(m => m.PolicyApprovalId == id);
+        //    if (approval == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(approval);
+        //}
+
+        //public async Task<IActionResult> DetailsAction(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var action = await _Db.PolicyActions
+        //        .FirstOrDefaultAsync(m => m.PolicyActionId == id);
+        //    if (action == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(action);
+        //}
 
         // GET: FinancialmanagrmentController/Create
         public ActionResult Create()
@@ -135,6 +156,27 @@ namespace HealthInsurance.Controllers
             }
         }
 
+        // GET: FinancialmanagrmentController/Edit/5
+        public ActionResult EditAction(int id)
+        {
+            return View();
+        }
+
+        // POST: FinancialmanagrmentController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAction(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: FinancialmanagrmentController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -145,6 +187,27 @@ namespace HealthInsurance.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: FinancialmanagrmentController/Delete/5
+        public ActionResult DeleteAction(int id)
+        {
+            return View();
+        }
+
+        // POST: FinancialmanagrmentController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAction(int id, IFormCollection collection)
         {
             try
             {
