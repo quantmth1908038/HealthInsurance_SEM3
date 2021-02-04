@@ -10,6 +10,7 @@ namespace HealthInsurance.Areas.Identity.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public Employee employee { get; set; }
+        public Employee Employee { get; set; }
+        public Customer Customer { get; set; }
     }
 }

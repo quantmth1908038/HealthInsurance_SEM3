@@ -22,9 +22,9 @@ namespace HealthInsurance.Controllers
         {
             try
             {
-                var staffList = _Db.PolicyRequests.ToList();
+                var RequestList = _Db.Customers;
 
-                return View(staffList);
+                return View(RequestList);
             }
             catch (Exception ex)
             {
@@ -33,9 +33,9 @@ namespace HealthInsurance.Controllers
             
         }
 
-        public IActionResult Create(PolicyRequest obj)
+        public IActionResult Create(Customer customer, PolicyRequest policyRequest)
         {
-            return View(obj);
+            return View();
         }
 
         [HttpPost]

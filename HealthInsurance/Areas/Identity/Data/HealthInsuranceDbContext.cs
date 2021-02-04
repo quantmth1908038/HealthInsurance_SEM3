@@ -19,6 +19,7 @@ namespace HealthInsurance.Data
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Policy> Policies { get; set; }
         public DbSet<PolicyAction> PolicyActions { get; set; }

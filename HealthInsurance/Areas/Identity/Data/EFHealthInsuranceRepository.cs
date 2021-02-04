@@ -17,6 +17,7 @@ namespace HealthInsurance.Areas.Identity.Data
 
         public IQueryable<Company> Companies => context.Companies;
         public IQueryable<Employee> Employees => context.Employees;
+        public IQueryable<Customer> Customers => context.Customers;
         public IQueryable<Hospital> Hospitals => context.Hospitals;
         public IQueryable<Policy> Policies => context.Policies;
         public IQueryable<PolicyAction> PolicyActions => context.PolicyActions;
