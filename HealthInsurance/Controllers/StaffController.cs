@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HealthInsurance.Data;
 using HealthInsurance.Models;
+using HealthInsurance.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace HealthInsurance.Controllers
         {
             _Db = Db;
         }
+
         public IActionResult Index()
         {
             try
@@ -33,10 +35,18 @@ namespace HealthInsurance.Controllers
             
         }
 
-        public IActionResult Create(Customer customer, PolicyRequest policyRequest)
+        public IActionResult PolicyList()
         {
-            return View();
+            var PolicyLists = _Db.Policies.ToList();
+            return View(PolicyLists);
         }
+
+        public IActionResult Create(Customer customer)
+        {
+            return View(customer);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> AddStaff(PolicyRequest obj)

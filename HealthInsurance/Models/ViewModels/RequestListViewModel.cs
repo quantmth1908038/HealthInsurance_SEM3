@@ -12,7 +12,7 @@ namespace HealthInsurance.Models.ViewModels
 
     public class Request
     {
-        public Employee Employee { get; set; }
-        public IEnumerable<PolicyRequest> PolicyRequest { get; set; }
+        public Customer Customer { get; set; }
+        public PolicyRequest PolicyRequest { get; set; }
     }
 }
