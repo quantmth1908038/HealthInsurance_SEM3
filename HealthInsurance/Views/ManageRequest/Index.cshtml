@@ -1,0 +1,23 @@
+﻿@model IQueryable<PolicyRequest>;
+
+
+
+<section id="main-content">
+    <section class="wrapper">
+        <thead>
+            <th>RequestDate</th>
+            <th>Status</th>
+            
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <td>@p.RequestDate</td>
+                <td>@p.Status</td>                
+            }
+         </tbody>
+        <a href="#">Xem chi tiet</a>
+        
+
+    </section>
+</section>
