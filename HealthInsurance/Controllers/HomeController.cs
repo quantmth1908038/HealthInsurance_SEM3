@@ -44,12 +44,6 @@ namespace HealthInsurance.Controllers
                 ListUserRoles.Add(listUserRole);
             }
 
-            await roleManager.CreateAsync(new IdentityRole("Administrator"));
-            await roleManager.CreateAsync(new IdentityRole("Manager"));
-            await roleManager.CreateAsync(new IdentityRole("Finance Manager"));
-            await roleManager.CreateAsync(new IdentityRole("Staff"));
-            await roleManager.CreateAsync(new IdentityRole("User"));
-                
             return View(new UserListViewModel
             {
                 TotalUser = _repository.Users.Count(),

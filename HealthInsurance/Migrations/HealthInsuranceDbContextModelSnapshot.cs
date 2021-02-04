@@ -15,7 +15,7 @@ namespace HealthInsurance.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -109,6 +109,49 @@ namespace HealthInsurance.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("HealthInsurance.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique()
+                        .HasFilter("[ApplicationUserId] IS NOT NULL");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("HealthInsurance.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
@@ -136,6 +179,9 @@ namespace HealthInsurance.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("varchar(10)");
 
                     b.Property<DateTime>("Joindate")
                         .HasColumnType("datetime2");
@@ -317,6 +363,9 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
@@ -330,6 +379,8 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(3)");
 
                     b.HasKey("PolicyRequestId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("EmployeeId");
 
@@ -473,10 +524,17 @@ namespace HealthInsurance.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("HealthInsurance.Models.Customer", b =>
+                {
+                    b.HasOne("HealthInsurance.Areas.Identity.Data.ApplicationUser", "applicationUser")
+                        .WithOne("Customer")
+                        .HasForeignKey("HealthInsurance.Models.Customer", "ApplicationUserId");
+                });
+
             modelBuilder.Entity("HealthInsurance.Models.Employee", b =>
                 {
                     b.HasOne("HealthInsurance.Areas.Identity.Data.ApplicationUser", "applicationUser")
-                        .WithOne("employee")
+                        .WithOne("Employee")
                         .HasForeignKey("HealthInsurance.Models.Employee", "ApplicationUserId");
                 });
 
@@ -528,13 +586,19 @@ namespace HealthInsurance.Migrations
 
             modelBuilder.Entity("HealthInsurance.Models.PolicyRequest", b =>
                 {
-                    b.HasOne("HealthInsurance.Models.Employee", "employee")
+                    b.HasOne("HealthInsurance.Models.Customer", "Customer")
+                        .WithMany("policyRequests")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthInsurance.Models.Employee", "Employee")
                         .WithMany("policyRequests")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HealthInsurance.Models.Policy", "policy")
+                    b.HasOne("HealthInsurance.Models.Policy", "Policy")
                         .WithMany("policyRequests")
                         .HasForeignKey("PolicyId")
                         .OnDelete(DeleteBehavior.Cascade)

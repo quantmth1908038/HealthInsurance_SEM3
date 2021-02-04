@@ -184,17 +184,45 @@ namespace HealthInsurance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(type: "varchar(50)", nullable: true),
+                    LastName = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Gender = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Address = table.Column<string>(type: "varchar(150)", nullable: true),
+                    Contact = table.Column<string>(type: "varchar(50)", nullable: true),
+                    State = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Country = table.Column<string>(type: "varchar(50)", nullable: true),
+                    City = table.Column<string>(type: "varchar(50)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
+                    table.ForeignKey(
+                        name: "FK_Customers_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(nullable: false),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     Designation = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Joindate = table.Column<DateTime>(nullable: true),
-                    Salary = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    Joindate = table.Column<DateTime>(nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
                     FirstName = table.Column<string>(type: "varchar(50)", nullable: true),
                     LastName = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Gender = table.Column<string>(type: "varchar(10)", nullable: true),
                     Address = table.Column<string>(type: "varchar(150)", nullable: true),
                     Contact = table.Column<string>(type: "varchar(50)", nullable: true),
                     State = table.Column<string>(type: "varchar(50)", nullable: true),
@@ -221,10 +249,10 @@ namespace HealthInsurance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
                     PolicyDesc = table.Column<string>(type: "ntext", nullable: true),
-                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
-                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
                     CompanyId = table.Column<int>(nullable: false),
-                    HospitalId = table.Column<string>(type: "varchar(50)", nullable: false)
+                    HospitalId = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -280,11 +308,18 @@ namespace HealthInsurance.Migrations
                     RequestDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<string>(type: "varchar(3)", nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
                     PolicyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PolicyRequests", x => x.PolicyRequestId);
+                    table.ForeignKey(
+                        name: "FK_PolicyRequests_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PolicyRequests_Employees_EmployeeId",
                         column: x => x.EmployeeId,
@@ -305,9 +340,9 @@ namespace HealthInsurance.Migrations
                 {
                     PolicyApprovalId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: true),
-                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
-                    Status = table.Column<string>(type: "varchar(3)", nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Status = table.Column<string>(type: "varchar(3)", nullable: false),
                     Reason = table.Column<string>(type: "varchar(50)", nullable: true),
                     PolicyRequestId = table.Column<int>(nullable: false)
                 },
@@ -330,9 +365,9 @@ namespace HealthInsurance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
                     Policydes = table.Column<string>(type: "varchar(250)", nullable: true),
-                    PolicyAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
-                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
-                    PolicyDurationInMonths = table.Column<int>(nullable: true),
+                    PolicyAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    PolicyDurationInMonths = table.Column<int>(nullable: false),
                     PolicyApprovalId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -386,6 +421,13 @@ namespace HealthInsurance.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_ApplicationUserId",
+                table: "Customers",
+                column: "ApplicationUserId",
+                unique: true,
+                filter: "[ApplicationUserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_ApplicationUserId",
                 table: "Employees",
                 column: "ApplicationUserId",
@@ -423,6 +465,11 @@ namespace HealthInsurance.Migrations
                 name: "IX_PolicyEmployees_PolicyId",
                 table: "PolicyEmployees",
                 column: "PolicyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PolicyRequests_CustomerId",
+                table: "PolicyRequests",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PolicyRequests_EmployeeId",
@@ -466,6 +513,9 @@ namespace HealthInsurance.Migrations
 
             migrationBuilder.DropTable(
                 name: "PolicyRequests");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Employees");

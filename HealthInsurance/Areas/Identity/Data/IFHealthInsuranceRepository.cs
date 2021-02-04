@@ -10,6 +10,7 @@ namespace HealthInsurance.Areas.Identity.Data
     {
         IQueryable<Company> Companies { get; }
         IQueryable<Employee> Employees { get; }
+        IQueryable<Customer> Customers { get; }
         IQueryable<Hospital> Hospitals { get; }
         IQueryable<Policy> Policies { get; }
         IQueryable<PolicyAction> PolicyActions { get; }

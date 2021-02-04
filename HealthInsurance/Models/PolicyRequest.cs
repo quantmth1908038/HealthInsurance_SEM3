@@ -20,10 +20,12 @@ namespace HealthInsurance.Models
         public string Status { get; set; }
 
         public int EmployeeId { get; set; }
+        public int CustomerId { get; set; }
         public int PolicyId { get; set; }
 
-        public Employee employee { get; set; }
-        public Policy policy { get; set; }
+        public Employee Employee { get; set; }
+        public Customer Customer { get; set; }
+        public Policy Policy { get; set; }
         public PolicyApproval policyApproval { get; set; }
     }
 }
