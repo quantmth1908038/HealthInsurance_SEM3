@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using HealthInsurance.Data;
 
 namespace HealthInsurance.Areas.Identity.Pages.Account
 {
@@ -21,14 +22,20 @@ namespace HealthInsurance.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private HealthInsuranceDbContext _context;
+        private RoleManager<IdentityRole> _roleManager;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, 
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
+            HealthInsuranceDbContext context,
+            RoleManager<IdentityRole> roleManager,
             UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -57,6 +64,17 @@ namespace HealthInsurance.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            await _roleManager.CreateAsync(new IdentityRole("Administrator"));
+            await _roleManager.CreateAsync(new IdentityRole("Manager"));
+            await _roleManager.CreateAsync(new IdentityRole("Finance Manager"));
+            await _roleManager.CreateAsync(new IdentityRole("Staff"));
+            await _roleManager.CreateAsync(new IdentityRole("User"));
+
+            var useradmin = new ApplicationUser { UserName = "admin@admin.com", Email = "admin@admin.com" };
+            var result = await _userManager.CreateAsync(useradmin, "admin");
+            var User = _context.Users.Where(x => x.UserName == useradmin.UserName).FirstOrDefault();
+            var setRole = await _userManager.AddToRoleAsync(User, "Administrator");
+
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);

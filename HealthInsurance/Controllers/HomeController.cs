@@ -44,21 +44,6 @@ namespace HealthInsurance.Controllers
                 ListUserRoles.Add(listUserRole);
             }
 
-            await roleManager.CreateAsync(new IdentityRole("Administrator"));
-            await roleManager.CreateAsync(new IdentityRole("Manager"));
-            await roleManager.CreateAsync(new IdentityRole("Finance Manager"));
-            await roleManager.CreateAsync(new IdentityRole("Staff"));
-            await roleManager.CreateAsync(new IdentityRole("User"));
-
-            var useradmin = new ApplicationUser { UserName = "admin@admin.com", Email = "admin@admin.com" };
-            var result = await _userManager.CreateAsync(useradmin, "admin");
-            var User = _repository.Users.Where(x => x.UserName == useradmin.UserName).FirstOrDefault();
-            var setRole = await _userManager.AddToRoleAsync(User, "Administrator");
-            if (!result.Succeeded && !setRole.Succeeded)
-            {
-                return RedirectToAction("Error");
-            } 
-
             return View(new UserListViewModel
             {
                 TotalUser = _repository.Users.Count(),
