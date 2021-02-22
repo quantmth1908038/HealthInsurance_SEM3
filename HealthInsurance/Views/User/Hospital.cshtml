@@ -1,0 +1,82 @@
+﻿@model IQueryable<Hospital>;
+
+
+
+    <style type="text/css">
+        .header {
+            background-color: #cb7802;
+            width: 980px;
+            height: 98px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 17px;
+        }
+
+        section, header, footer {
+            float: left;
+            width: 100%;
+        }
+
+        .container {
+            width: 1120px;
+            margin: auto;
+        }
+
+        .box {
+            border: 5px solid black;
+            margin-top: 30px;
+        }
+
+        .boximg img {
+            width: 300px;
+            margin-top: 40px;
+        }
+
+        .boxtext {
+            margin-bottom: 20px;
+        }
+
+        .name {
+            color: blue;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .introduce {
+            color: red;
+        }
+    </style>
+
+
+
+
+<body>
+    <section class="hospital">
+        <div class="container">           
+                @foreach (var p in Model)
+                {
+                    <div class="box col-md-12">
+                        <div class="boximg col-md-4">
+                            <img src="@p.Url">
+                        </div>
+                        <div class="boxtext col-md-8">
+                            <div class="name">@p.HospitalName</div>
+                            <div class="phone"><font color="red">Hotline:</font> @p.Phone</div>
+                            <div class="location"><font color="red">Location:</font> @p.Location</div>
+                            <div class="introduce">Đôi nét về bệnh viện Bạch Mai:</div>
+                            <div class="">Bệnh viện Bạch Mai là bệnh viện đầu tiên trong nước được nhận danh hiệu đặc biệt. Hiện tại bệnh viện Bạch Mai có 1.400 giường bệnh, tất cả trưởng khoa, giám đốc các trung tâm đều có trình độ sau đại học. Tỉ lệ tử vong của bệnh nhân chỉ từ 0,8-0,9% và tỉ lệ sử dụng giường bệnh đạt 153% (so với tiêu chí đề ra là 85%).</div>
+                            <div class="">Tháng 10 năm 2009, Bộ trưởng Y tế Nguyễn Quốc Triệu đã làm việc với Bệnh viện Bạch Mai về kế hoạch phát triển bệnh viện thành trung tâm y tế chuyên sâu với tất cả các chuyên ngành về nội khoa. Trong đó, bệnh viện sẽ tập trung phát triển 7 lĩnh vực: tim mạch, hồi sức - cấp cứu - chống độc, thần kinh, y học hạt nhân và ung bướu, chẩn đoán hình ảnh, hoá sinh, vi sinh có trình độ khoa học - kĩ thuật ngang tầm các nước trong khu vực và quốc tế.</div>
+                            <div class="">Trong tháng 3 và thang 4 năm 2020 Bệnh viện Bạch Mai đang là tâm điểm chú ý sau khi trở thành nơi có số lượng người lây nhiễm COVID-19 lớn nhất toàn quốc. Bệnh viện đã bị cách ly nghiêm ngặt và các bệnh nhân được di dời đến các tỉnh khác để giảm tải cho việc chữa trị cho tới tháng 5 mới trở lại hoạt động bình thường.</div>
+                        </div>
+                    </div>
+                 }
+
+        </div>
+    </section>
+
+</body>
+

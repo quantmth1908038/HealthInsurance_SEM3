@@ -20,6 +20,9 @@ namespace HealthInsurance.Models
         [Column(TypeName = "varchar(50)")]
         public string CompanyURL { get; set; }
 
+        public string description { get; set; }
+        public string description2 { get; set; }
+
         public ICollection<Policy> policies { get; set; }
     }
 }

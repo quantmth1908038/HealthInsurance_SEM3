@@ -29,7 +29,10 @@ namespace HealthInsurance.Areas.Identity.Data
                         CompanyName = "Bao Viet Insurance",
                         Address = "Ha Noi, Viet Nam",
                         Phone = "0396969696",
-                        CompanyURL = "",
+                        CompanyURL = "https://vietcomin.net/uploads/ebaoviet.com/1/Bieutuong/bao_hiem_bao_viet.png",
+                        description = "Bao Viet Group (international transaction name: Baoviet Holdings). Established on January 15, 1965, up to now, Bao Viet has become the leading Finance - Insurance Group in Vietnam and is in the List of Top 50 best listed companies in 2020 voted by Forbes Vietnam. Bao Viet is serving about 20 million customers, equivalent to nearly 20% of Vietnam's population. The Group is headquartered in Hanoi with more than 200 branches and affiliated companies across 63 provinces and cities nationwide.",
+                        description2 = "Trong 55 năm hình thành và phát triển, Bảo Việt duy trì kết quả kinh doanh khả quan, lĩnh vực kinh doanh bảo hiểm nhân thọ và bảo hiểm phi nhân thọ giữ vị trí số 1 thị trường. Thông qua việc triển khai hiệu quả các giải pháp kinh doanh, Bảo Việt đã duy trì được sự tăng trưởng ổn định, góp phần đảm bảo thực hiện các nghĩa vụ với ngân sách nhà nước cũng như đảm bảo quyền lợi cho khách hàng, cổ đông, người lao động và cộng đồng."
+
                     }
                     );
                 context.SaveChanges();
@@ -78,6 +81,10 @@ namespace HealthInsurance.Areas.Identity.Data
                         Phone = "11111",
                         Location = "Ha Noi, Viet Nam",
                         Url = "https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Seed_Data1.jpg",
+                        description1 = "Today Viet Duc Friendship Hospital was established in 1902 with the establishment of the Indochina Medical School, the forerunner of Hanoi Medical University. From 1904 the hospital moved to its present location with the name of the Protection Hospital (Hopital indigène du Protectorat). The hospital has different names through each historical period of the country: Yersin Hospital (1943), Phu Doan Hospital (1954), Vietnam Friendship Hospital - German Democratic Republic (1958-1990) and Viet Duc Friendship Hospital from 1991 to present.",
+                        description2 = "During the process of formation and development, the hospital has always been a leading medical center linking medical examination and treatment with medical scientific research and training, the birthplace of leading Vietnamese physicians. In the South, there are many famous medical celebrities: Ho Dac Di, Ton That Tung, Nguyen Trinh Co, Nguyen Duong Quang….",
+                        description3 = "Today, the hospital is a specialized medical center, ranked as a Specialized Hospital by Decision No. 1446 / QD-BNV dated September 21, 2015 of the Minister of Home Affairs. The hospital has a scale of 1500 beds with more than 2200 physicians, medical staff and staff, including: 5 professors, 32 associate professors, 40 doctors, 221 masters and postgraduate specialists."
+
                     },
                     new Hospital
                     {
@@ -85,7 +92,10 @@ namespace HealthInsurance.Areas.Identity.Data
                         HospitalName = "Bach Mai Hospital",
                         Phone = "222222",
                         Location = "Ha Noi, Viet Nam",
-                        Url = "https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Seed_Data2.jpg"
+                        Url = "https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Seed_Data2.jpg",
+                        description1 = "Bach Mai Hospital was the first hospital in the country to be specially identified. At present, Bach Mai Hospital has 1,400 patients, all department heads and center directors have postgraduate qualifications. The patient mortality was only 0.8-0.9% and the disease prevalence rate was 153% (compared with the headline 85%)",
+                        description2 = "In October 2009, Health Minister Nguyen Quoc Trieu worked with Bach Mai Hospital on a plan to develop the hospital into a specialized medical center with all medical specialties. In particular, the hospital will focus on developing 7 areas: cardiology, resuscitation - emergency - anti-toxic, neurology, nuclear medicine and cancer, diagnostic imaging, biochemistry, microbiology. science - technology to screen water in the region and internationally.",
+                        description3 = "In March and April 2020, Bach Mai Hospital is in the spotlight after becoming the place with the largest number of people infected with COVID-19 in the country. The hospital was quarantined and the patients were transferred to other provinces to reduce the workload for repairs until May to return to normal operations."
                     },
                     new Hospital
                     {
@@ -93,7 +103,10 @@ namespace HealthInsurance.Areas.Identity.Data
                         HospitalName = "K Hospital",
                         Phone = "22222212",
                         Location = "Ha Noi, Viet Nam",
-                        Url = "https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Seed_Data3.jpg"
+                        Url = "https://raw.githubusercontent.com/nddat1908/T1908A_Sem3/master/ImageSubjectHeath/Seed_Data3.jpg",
+                        description1 = "On July 17, 1969, with the consent of the Government, the Minister of Health issued a decision No. 711 / QD-BYT to establish Hospital K was established from the predecessor of Indochina Curie Institute (Insitut Curie de L 'Indochine) was born in Hanoi on 19/10/1923, in charge of Lawyer Mourlan. The hospital has 3 spacious, clean and modern facilities on par with other countries in the region. field. Currently, 3 medical examination and treatment facilities in Hanoi.",
+                        description2 = "According to the targets assigned by the Ministry of Health in 2015, the hospital has 1,800 beds (According to Decision No. 119 / QD-BYT dated January 15, 2015 of the Minister of Health). The hospital currently has 77 hospitals, centers, faculties, departments and divisions with more than 1,700 officials and workers.",
+                        description3 = "Total number of hospital quality criteria applied: 79/83 criteria (rate 95%). Total score of the applied criteria: 321 points (coefficient: 350), the average score of the criteria: 4.07 points (compared to 2017 is 3.56 points; in 2018 it is 4, 05 points) is the huge progress of the Hospital."
                     }
                     );
                 context.SaveChanges();
