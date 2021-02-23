@@ -6,154 +6,35 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HealthInsurance.Data;
 using Microsoft.EntityFrameworkCore;
+using HealthInsurance.Data;
+using HealthInsurance.Models;
+using HealthInsurance.Models.ViewModels;
+
 
 namespace HealthInsurance.Controllers
 {
     public class FinancialmanagrmentController : Controller
     {
-        //private HealthInsuranceDbContext context;
-
-        //public FinancialmanagrmentController(HealthInsuranceDbContext ctx)
-        //{
-        //    context = ctx;
-        //}
-
-        // GET: FinancialmanagrmentController
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        private readonly HealthInsuranceDbContext _Db;
-
-        public FinancialmanagrmentController(HealthInsuranceDbContext Db)
+        private readonly HealthInsuranceDbContext _context;
+        public FinancialmanagrmentController(HealthInsuranceDbContext context)
         {
-            _Db = Db;
-        }
-        public async Task<IActionResult> Index()
-        {
-            return View(await _Db.PolicyApprovals.ToListAsync());
+            _context = context;
         }
 
-        //public IActionResult Index()
-        //{
-        //    try
-        //    {
-        //        var financialmanagrmentList = _Db.PolicyApprovals.ToList();
-
-        //        return View(financialmanagrmentList);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return View();
-        //    }
-
-        //}
-
-        // GET: FinancialmanagrmentController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Index()
         {
-            if (id == null)
+            var _customers = _context.Customers.ToList();
+            List<ApprovalListViewModel> approvalListViewModels = new List<ApprovalListViewModel>();
+            foreach(var customer in _customers)
             {
-                return NotFound();
+                ApprovalListViewModel approvalListViewModel = new ApprovalListViewModel();
+                approvalListViewModel.Customer = customer;
+                var policyApprovalId = customer.policyRequests.FirstOrDefault().PolicyApprovalId;
+                approvalListViewModel.policyApproval = _context.PolicyApprovals.Where(x => x.PolicyApprovalId == customer.policyRequests.FirstOrDefault().PolicyApprovalId).FirstOrDefault();
+                approvalListViewModels.Add(approvalListViewModel);
             }
-
-            var approval = await _Db.PolicyApprovals
-                .FirstOrDefaultAsync(m => m.PolicyApprovalId == id);
-            if (approval == null)
-            {
-                return NotFound();
-            }
-
-            return View(approval);
-        }
-
-        // GET: FinancialmanagrmentController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: FinancialmanagrmentController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FinancialmanagrmentController/Create
-        public ActionResult CreateAction()
-        {
-            return View();
-        }
-
-        // POST: FinancialmanagrmentController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateAction(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FinancialmanagrmentController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: FinancialmanagrmentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FinancialmanagrmentController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: FinancialmanagrmentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            
+            return View(approvalListViewModels);
         }
     }
 }

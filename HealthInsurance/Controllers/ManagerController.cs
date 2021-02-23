@@ -6,6 +6,7 @@ using HealthInsurance.Data;
 using HealthInsurance.Models;
 using HealthInsurance.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.Controllers
 {
@@ -26,7 +27,7 @@ namespace HealthInsurance.Controllers
             {
                 RequestListViewModel RequestListViewModel = new RequestListViewModel();
                 RequestListViewModel.Customer = customer;
-                RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId);
+                RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
                 foreach (var policyRequest in RequestListViewModel.PolicyRequests)
                 {
                     RequestListViewModel.Amount += policyRequest.Policy.Amount;
@@ -48,7 +49,7 @@ namespace HealthInsurance.Controllers
             {
                 return NotFound();
             }
-            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId);
+            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
             decimal Amount = new decimal();
             decimal Emi = new decimal();
             foreach (var policyRequest in _PolicyRequests)
@@ -77,7 +78,7 @@ namespace HealthInsurance.Controllers
             {
                 return NotFound();
             }
-            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId);
+            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
             PolicyApproval policyApproval = new PolicyApproval();
 
             decimal Amount = new decimal();
@@ -96,6 +97,5 @@ namespace HealthInsurance.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
     }
 }

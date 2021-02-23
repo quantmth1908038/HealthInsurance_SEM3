@@ -1,7 +1,7 @@
-﻿@model IEnumerable<HealthInsurance.Models.PolicyApproval>
+﻿@model IEnumerable<HealthInsurance.Models.ViewModels.ApprovalListViewModel>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Financialmanagrment/_Layout.cshtml";
+    
 }
 
 <section id="main-content">
@@ -9,22 +9,18 @@
         <div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Policy Approval
+                    Policy Request
                 </div>
-
-                <div class="row w3-res-tb">
-                    <div class="col-sm-5 m-b-xs">
-                        <p>
-                                <a asp-action="Create" class="btn btn-outline-success">Create Approval</a>
+                @*<div class="row w3-res-tb">
+                        <div class="col-sm-5 m-b-xs">
+                            <p>
+                                <a asp-action="PolicyList" class="btn btn-outline-success">Add Staff</a>
                             </p>
-                        @*<p>
-                            @Html.ActionLink("Create New", "Create")
-                        </p>*@
-                    </div>
-                    <div class="col-sm-4">
-                    </div>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
 
-                </div>
+                    </div>*@
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light">
                         <thead>
@@ -34,119 +30,29 @@
                                         <input type="checkbox"><i></i>
                                     </label>
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PolicyApprovalId)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Date)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Amount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Status)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Reason)
-                                </th>
-                               
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th style="width:30px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PolicyApprovalId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Date)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Amount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Status)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Reason)
-                                    </td>
-                                 
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.PolicyApprovalId">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PolicyApprovalId">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PolicyApprovalId">Delete</a>
-                                    </td>
-                                    @*<td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.PolicyApprovalId }, new { @class = "btn btn-success" }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.PolicyApprovalId }, new { @class = "btn btn-success" }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.PolicyApprovalId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
-                                    </td>*@
-                                </tr>
-                               
-                            }
-                        </tbody>
-                    </table>
-                </div>
 
-            </div>
-        </div>
-    </section>
-</section>
-<section id="main-content">
-    <section class="wrapper">
-        <div class="table-agile-info">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Policy Action
-                </div>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Customer.Gender)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Customer.City)
+                                </th>
 
-                <div class="row w3-res-tb">
-                    <div class="col-sm-5 m-b-xs">
-                        <p>
-                            <a asp-action="CreateAction" class="btn btn-outline-success">Create Action</a>
-                        </p>
-                    </div>
-                    <div class="col-sm-4">
-                    </div>
-
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped b-t b-light">
-                        <thead>
-                            <tr>
-                                <th style="width:20px;">
-                                    <label class="i-checks m-b-none">
-                                        <input type="checkbox"><i></i>
-                                    </label>
+                                <th>
+                                    Date
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.PolicyActionId)
+                                    Amount
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.PolicyName)
+                                    Status
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.Policydes)
+                                    Reason
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.PolicyAmount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.Emi)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.PolicyDurationInMonths)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.policyAction.PolicyApprovalId)
-                                </th>
-                                <th></th>
-                         
                                 <th style="width:30px;"></th>
                             </tr>
                         </thead>
@@ -155,38 +61,33 @@
                             {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.PolicyActionId)
+                                    @Html.DisplayFor(modelItem => item.Customer.FirstName)  @Html.DisplayFor(modelItem => item.Customer.LastName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.PolicyName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.Policydes)
+                                    @Html.DisplayFor(modelItem => item.Customer.City)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.PolicyAmount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.Emi)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.PolicyDurationInMonths)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.policyAction.PolicyApprovalId)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.policyAction.PolicyActionId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.policyAction.PolicyActionId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.policyAction.PolicyActionId">Delete</a>
-                                </td>
-                                @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.PolicyApprovalId }, new { @class = "btn btn-success" }) |
-            @Html.ActionLink("Details", "Details", new { id = item.PolicyApprovalId }, new { @class = "btn btn-success" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PolicyApprovalId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
-        </td>*@
-                            </tr>
 
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.policyApproval.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.policyApproval.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.policyApproval.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.policyApproval.Reason)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { @class = "btn btn-success" }) |
+                                    @Html.ActionLink("Detail", "Detail", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

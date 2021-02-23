@@ -9,6 +9,7 @@
                         User Company
                     </div>
 
+<<<<<<< HEAD
                     <div class="table-responsive">
                         <table class="table table-striped b-t b-light">
                             <thead>
@@ -49,6 +50,34 @@
                                 }
                             </tbody>
                         </table>
+=======
+        .explain {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <section class="policy">
+        <div class="container">
+            @foreach (var p in Model)
+            {
+                
+                    <div class="box col-md-12">
+                        <div class="boximg col-md-4">
+                            <img src="@p.CompanyURL">
+                        </div>
+                        <div class="boxtext col-md-8">
+                            <div class="name">@p.CompanyName</div>
+                            <div class="phone"><font color="red">Address:</font> @p.Address</div>
+                            <div class="location"><font color="red">Location:</font> @p.Phone</div>
+                            <div class="decs"><font color="red">Description:</font> @p.description
+                                <p>@p.description2</p>
+                            
+                            </div>
+
+                            
+                        </div>
+>>>>>>> fd2e4cb7f73cb3ab5f80f2a707147b54baee3e92
                     </div>
 
                 </div>
