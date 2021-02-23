@@ -27,7 +27,7 @@ body {
     font-family: "Roboto", sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    /*background-color: #f5f7fa;*/
+    background: linear-gradient(#07a3b2, #d9ecc7) ;
 }
 
     body a {
@@ -271,7 +271,7 @@ ul.sidebar-menu li a {
 
 .wrapper {
     display: inline-block;
-    margin-top: 45px;
+    margin-top: 70px;
     padding: 15px;
     width: 100%;
 }

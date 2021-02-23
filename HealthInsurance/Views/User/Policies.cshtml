@@ -1,98 +1,91 @@
 ﻿@model IQueryable<Policy>;   
-    <head>
-        <style type="text/css">
-            .header {
-                background-color: #cb7802;
-                width: 980px;
-                height: 98px;
-            }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-size: 17px;
-            }
-
-            section, header, footer {
-                float: left;
-                width: 100%;
-            }
-
-            .container {
-                width: 1120px;
-                margin: auto;
-            }
-
-            .box {
-                border: 5px solid black;
-                margin-top: 30px;
-            }
-
-            .boximg img {
-                width: 300px;
-                margin-top: 40px;
-            }
-
-            .boxtext {
-                margin-bottom: 20px;
-            }
-
-            .name {
-                color: blue;
-                font-size: 24px;
-                text-align: center;
-                font-weight: bold;
-            }
-
-            .introduce {
-                color: red;
-            }
-            .explain {
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    <body>
-        <section class="policy">
-            <div class="container">
-                @foreach (var p in Model)
-                {
-                    <div class="box col-md-12">
-                        <div class="name">@p.PolicyName</div>
-                        <div class="col-md-12">
-                            
-                            <p>Description: @p.PolicyDesc</p>
-                            <p>Amount: @p.Amount</p>
-                            <p>Emi: @p.Emi</p>
-                            <p>Hospital: </p>
-                            <p>Company: </p>
+        <section id="main-content" style="margin-top: 40px">
+            <section class="wrapper">
+                <div class="table-agile-info">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            User Policies
                         </div>
-                        @*<div class="col-md-12">
-                            <div class="explain">2) Một số đặc điểm nổi bật:</div>
-                            <p>+) Mức phí luôn tốt nhất, có chính sách giảm phí, khuyến mãi khi mua gói bảo hiểm sức khỏe này (tùy theo số lượng người tham gia, chương trình lựa chọn Bảo Hiểm Bảo Việt sẽ có mức giảm phí phù hợp)</p>
-                            <p>+) Tư vấn viên nhiệt tình, có trình độ chuyên môn cao (đều tốt nghiệp cử nhân) và có kinh nghiệm làm việc với các hợp đồng tổ chức lớn</p>
-                            <p>+) Mức phí, quyền lợi đa dạng phù hợp với mọi nhu cầu cũng như khả năng tài chính của từng cơ quan tổ chức (tối thiểu chỉ cần từ 3 người trong công ty, tổ chức trở lên là có thể tham gia được gói bảo hiểm này)</p>
-                            <p>+) Hệ thống bệnh viện liên kết rộng khắp cả nước trải dài từ Bắc đến Nam.  Người được bảo hiểm được tiếp cận với những cơ sở y tế hàng đầu Việt Nam như: Vimec, Việt Pháp, Thu Cúc, Hồng Ngọc, Bệnh viện FV, Hồng Đức,….</p>
-                            <p>+) IBAOHIEM cam kết hỗ trợ khách hàng trong suốt quá trình sử dụng</p>
-                            <p>+) Không cần khám sức khỏe trước khi đăng ký, thủ tục đơn giản, nhanh chóng</p>
-                            <p>+) Thủ tục bồi thường nhanh chóng, chuyên nghiệp và minh bạch</p>
+                       
+                        <div class="table-responsive">
+                            <table class="table table-striped b-t b-light">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Emi
+                                        </th>
+                                        <th>
+                                            Hospital
+                                        </th>
+                                        <th>
+                                            Company
+                                        </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in Model)
+                                    {
+                                      
+                                            @*<div class="col-md-12">
+                    <div class="explain">2) Một số đặc điểm nổi bật:</div>
+                    <p>+) Mức phí luôn tốt nhất, có chính sách giảm phí, khuyến mãi khi mua gói bảo hiểm sức khỏe này (tùy theo số lượng người tham gia, chương trình lựa chọn Bảo Hiểm Bảo Việt sẽ có mức giảm phí phù hợp)</p>
+                    <p>+) Tư vấn viên nhiệt tình, có trình độ chuyên môn cao (đều tốt nghiệp cử nhân) và có kinh nghiệm làm việc với các hợp đồng tổ chức lớn</p>
+                    <p>+) Mức phí, quyền lợi đa dạng phù hợp với mọi nhu cầu cũng như khả năng tài chính của từng cơ quan tổ chức (tối thiểu chỉ cần từ 3 người trong công ty, tổ chức trở lên là có thể tham gia được gói bảo hiểm này)</p>
+                    <p>+) Hệ thống bệnh viện liên kết rộng khắp cả nước trải dài từ Bắc đến Nam.  Người được bảo hiểm được tiếp cận với những cơ sở y tế hàng đầu Việt Nam như: Vimec, Việt Pháp, Thu Cúc, Hồng Ngọc, Bệnh viện FV, Hồng Đức,….</p>
+                    <p>+) IBAOHIEM cam kết hỗ trợ khách hàng trong suốt quá trình sử dụng</p>
+                    <p>+) Không cần khám sức khỏe trước khi đăng ký, thủ tục đơn giản, nhanh chóng</p>
+                    <p>+) Thủ tục bồi thường nhanh chóng, chuyên nghiệp và minh bạch</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="explain">3) Đối tượng bảo hiểm</div>
+                    <p>+) Hiện nay, Bảo hiểm sức khỏe Aon Care đang được áp dụng với các khách hàng là công dân Việt Nam và người nước ngoài đang cư trú tại lãnh thổ Việt Nam, đang là nhân viên của công ty có độ tuổi đến 65 tuổi.</p>
+                    <p>+) Điều đặc biệt là, khi tham gia Aon Care không những bản thân nhân viên tại công ty được bảo vệ toàn diện mà người thân của họ cũng có thể được tham gia vào chương trình bảo hiểm sức khỏe này ( nếu được công ty đồng ý ). Người thân ở đây bao gồm vợ/chồng, con từ 12 tháng tuổi – 18 tuổi, chấp nhận bảo vệ sức khỏe cho con đến 23 tuổi nếu còn đang đi học.</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="explain">4) Biểu phí và bảng quyền lợi bảo hiểm</div>
+                    <img src="https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3o-hi%E1%BB%83m-s%E1%BB%A9c-kh%E1%BB%8Fe-g%C3%B3i-Aon-Care-1.png" />
+                    <p>Với mức phí tối thiểu 2 triệu đồng/ năm, khách hàng sẽ được cấp thẻ xanh – Bảo lãnh chi phí y tế nội trú. Mức phí từ 8 triệu đồng/ năm, khách hàng sẽ được cấp thẻ vàng – Bảo lãnh chi phí y tế nội trú và ngoại trú. Đối với cấp quản lý, mức phí bảo hiểm từ 5 triệu đồng/ năm khách hàng sẽ được hưởng quyền lợi bảo hiểm tương đương mức 8 triệu đồng/ năm.</p>
+                </div>*@
+
+                                        <tr>
+                                            <td>
+                                                @p.PolicyName
+                                            </td>
+                                            <td>
+                                                @p.PolicyDesc
+                                            </td>
+                                            <td>
+                                                @p.Amount
+                                            </td>
+                                            <td>
+                                                @p.Emi
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+
+                                             </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-md-12">
-                            <div class="explain">3) Đối tượng bảo hiểm</div>
-                            <p>+) Hiện nay, Bảo hiểm sức khỏe Aon Care đang được áp dụng với các khách hàng là công dân Việt Nam và người nước ngoài đang cư trú tại lãnh thổ Việt Nam, đang là nhân viên của công ty có độ tuổi đến 65 tuổi.</p>
-                            <p>+) Điều đặc biệt là, khi tham gia Aon Care không những bản thân nhân viên tại công ty được bảo vệ toàn diện mà người thân của họ cũng có thể được tham gia vào chương trình bảo hiểm sức khỏe này ( nếu được công ty đồng ý ). Người thân ở đây bao gồm vợ/chồng, con từ 12 tháng tuổi – 18 tuổi, chấp nhận bảo vệ sức khỏe cho con đến 23 tuổi nếu còn đang đi học.</p>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="explain">4) Biểu phí và bảng quyền lợi bảo hiểm</div>
-                            <img src="https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3o-hi%E1%BB%83m-s%E1%BB%A9c-kh%E1%BB%8Fe-g%C3%B3i-Aon-Care-1.png" />
-                            <p>Với mức phí tối thiểu 2 triệu đồng/ năm, khách hàng sẽ được cấp thẻ xanh – Bảo lãnh chi phí y tế nội trú. Mức phí từ 8 triệu đồng/ năm, khách hàng sẽ được cấp thẻ vàng – Bảo lãnh chi phí y tế nội trú và ngoại trú. Đối với cấp quản lý, mức phí bảo hiểm từ 5 triệu đồng/ năm khách hàng sẽ được hưởng quyền lợi bảo hiểm tương đương mức 8 triệu đồng/ năm.</p>
-                        </div>*@
 
                     </div>
-                }
-
-            </div>
+                </div>
+            </section>
         </section>
-    </body>
 
