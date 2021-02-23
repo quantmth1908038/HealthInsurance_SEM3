@@ -7,12 +7,15 @@ namespace HealthInsurance.Models.ViewModels
 {
     public class RequestListViewModel
     {
-        public List<Request> Requests { get; set; }
+        public Customer Customer { get; set; }
+        public IEnumerable<PolicyRequest> PolicyRequests { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Emi { get; set; }
     }
 
-    public class Request
+    public class CreateViewModel
     {
+        public List<int> ListPolicyIds { get; set; }
         public Customer Customer { get; set; }
-        public PolicyRequest PolicyRequest { get; set; }
     }
 }

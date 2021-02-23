@@ -19,7 +19,7 @@ namespace HealthInsurance.Areas.Identity.Data
                 .CreateScope().ServiceProvider.GetRequiredService<HealthInsuranceDbContext>();
             if(context.Database.GetAppliedMigrations().Any())
             {
-                context.Database.Migrate();
+                //context.Database.Migrate();
             }
             if(!context.Companies.Any())
             {

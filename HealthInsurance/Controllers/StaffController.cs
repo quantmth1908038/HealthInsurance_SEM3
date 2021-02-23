@@ -6,6 +6,7 @@ using HealthInsurance.Areas.Identity.Data;
 using HealthInsurance.Data;
 using HealthInsurance.Models;
 using HealthInsurance.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.Controllers
 {
+    
     public class StaffController : Controller
     {
         private readonly HealthInsuranceDbContext _Db;
@@ -26,7 +28,7 @@ namespace HealthInsurance.Controllers
 
         public IActionResult Index()
         {
-            var RequestList = _Db.Customers;
+            var RequestList = _Db.Customers.ToList();
             return View(RequestList);
         }
 
@@ -36,30 +38,36 @@ namespace HealthInsurance.Controllers
             return View(PolicyLists);
         }
 
-        public IActionResult Create(List<int> ListId)
+        public IActionResult Create(List<int> PolicyId)
         {
-            return View(ListId);
+            return View(new CreateViewModel 
+            {
+                ListPolicyIds = PolicyId
+            });
         }
 
 
 
         [HttpPost]
-        public async Task<IActionResult> AddRequest(Customer customer, List<int> ListPolicyIds)
+        public async Task<IActionResult> AddRequest(CreateViewModel createViewModel)
         {
             if (ModelState.IsValid)
             {
-                _Db.Customers.Add(customer);
+                _Db.Customers.Add(createViewModel.Customer);
+                _Db.SaveChanges();
+             
                 var User = await _userManager.GetUserAsync(HttpContext.User);
                 var Employee = _Db.Employees.Where(x => x.ApplicationUserId == User.Id).FirstOrDefault();
-                foreach (var id in ListPolicyIds)
+                foreach (var id in createViewModel.ListPolicyIds)
                 {
                     PolicyRequest policyRequest = new PolicyRequest();
-                    policyRequest.CustomerId = customer.CustomerId;
+                    policyRequest.CustomerId = createViewModel.Customer.CustomerId;
                     policyRequest.EmployeeId = Employee.EmployeeId;
                     policyRequest.PolicyId = id;
                     policyRequest.RequestDate = DateTime.Today;
                     policyRequest.Status = "No";
                     _Db.PolicyRequests.Add(policyRequest);
+                    _Db.SaveChanges();
                 }
 
                 return RedirectToAction("Index");

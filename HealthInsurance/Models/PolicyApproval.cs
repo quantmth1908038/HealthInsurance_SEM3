@@ -16,7 +16,7 @@ namespace HealthInsurance.Models
         [Column(TypeName = "decimal(8,2)")]
         public decimal Amount { get; set; }
         [Column(TypeName = "varchar(3)")]
-        public char Status {get; set;}
+        public string Status {get; set;}
         [Column(TypeName = "varchar(50)")]
         public string Reason { get; set; }
 

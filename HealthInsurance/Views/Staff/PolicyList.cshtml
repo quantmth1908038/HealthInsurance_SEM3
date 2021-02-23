@@ -1,0 +1,93 @@
+﻿@model IEnumerable<HealthInsurance.Models.Policy>
+
+@{
+    ViewData["Title"] = "PolicyList";
+    Layout = "~/Views/Staff/_Layout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Policy Request
+                </div>
+                <div class="row w3-res-tb">
+                        <div class="col-sm-5 m-b-xs">
+                            <p>
+                                <a asp-action="PolicyList" class="btn btn-outline-success">Add Staff</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                <div class="table-responsive">
+                    <form action="Create">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    <th style="width:20px;">
+                                        <label class="i-checks m-b-none">
+                                            <input type="checkbox"><i></i>
+                                        </label>
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PolicyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PolicyDesc)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Amount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Emi)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.company.CompanyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.hospital.HospitalName)
+                                    </th>
+                                    <th style="width:30px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="PolicyId" value="@item.PolicyId" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PolicyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PolicyDesc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Amount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Emi)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.company.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.hospital.HospitalName)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
