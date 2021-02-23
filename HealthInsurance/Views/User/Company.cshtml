@@ -1,0 +1,80 @@
+﻿@model IQueryable<Company>;
+
+<head>
+    <style type="text/css">
+        .header {
+            background-color: #cb7802;
+            width: 980px;
+            height: 98px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 17px;
+        }
+
+        section, header, footer {
+            float: left;
+            width: 100%;
+        }
+
+        .container {
+            width: 1120px;
+            margin: auto;
+        }
+
+        .box {
+            border: 5px solid black;
+            margin-top: 30px;
+        }
+
+        .boximg img {
+            width: 300px;
+            margin-top: 40px;
+        }
+
+        .boxtext {
+            margin-bottom: 20px;
+        }
+
+        .name {
+            color: blue;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .introduce {
+            color: red;
+        }
+
+        .explain {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <section class="policy">
+        <div class="container">
+            @foreach (var p in Model)
+            {
+                
+                    <div class="box col-md-12">
+                        <div class="boximg col-md-4">
+                            <img src="@p.CompanyURL">
+                        </div>
+                        <div class="boxtext col-md-8">
+                            <div class="name">@p.CompanyName</div>
+                            <div class="phone"><font color="red">Address:</font> @p.Address</div>
+                            <div class="location"><font color="red">Location:</font> @p.Phone</div>
+                            
+                        </div>
+                    </div>
+                
+            }
+
+        </div>
+    </section>
+</body>
