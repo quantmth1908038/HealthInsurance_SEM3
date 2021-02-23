@@ -57,7 +57,7 @@ namespace HealthInsurance.Controllers
                 Emi += policyRequest.Policy.Emi;
             }
 
-            return View(new RequestListViewModel 
+            return View(new RequestListViewModel
             {
                 Customer = customer,
                 PolicyRequests = _PolicyRequests,
@@ -79,19 +79,18 @@ namespace HealthInsurance.Controllers
             }
             var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId);
             PolicyApproval policyApproval = new PolicyApproval();
-            policyApproval.Date = DateTime.Today;
-            policyApproval.Status = "No";
-            _context.PolicyApprovals.Add(policyApproval);
-            _context.SaveChanges();
+
             decimal Amount = new decimal();
             foreach (var policyRequest in _PolicyRequests)
             {
                 policyRequest.Status = "Yes";
                 Amount += policyRequest.Policy.Amount;
-                policyRequest.PolicyApprovalId = policyApproval.PolicyApprovalId;
+                policyApproval = _context.PolicyApprovals.Where(x => x.PolicyApprovalId == policyRequest.PolicyApprovalId).FirstOrDefault();
                 _context.PolicyRequests.Update(policyRequest);
                 _context.SaveChanges();
             }
+            policyApproval.Date = DateTime.Today;
+            policyApproval.Status = "No";
             policyApproval.Amount = Amount;
             _context.PolicyApprovals.Update(policyApproval);
             _context.SaveChanges();

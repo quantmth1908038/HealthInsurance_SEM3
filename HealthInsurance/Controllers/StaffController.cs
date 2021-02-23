@@ -58,12 +58,17 @@ namespace HealthInsurance.Controllers
              
                 var User = await _userManager.GetUserAsync(HttpContext.User);
                 var Employee = _Db.Employees.Where(x => x.ApplicationUserId == User.Id).FirstOrDefault();
+                PolicyApproval policyApproval = new PolicyApproval();
+                _Db.PolicyApprovals.Add(policyApproval);
+                _Db.SaveChanges();
+
                 foreach (var id in createViewModel.ListPolicyIds)
                 {
                     PolicyRequest policyRequest = new PolicyRequest();
                     policyRequest.CustomerId = createViewModel.Customer.CustomerId;
                     policyRequest.EmployeeId = Employee.EmployeeId;
                     policyRequest.PolicyId = id;
+                    policyRequest.PolicyApprovalId = policyApproval.PolicyApprovalId;
                     policyRequest.RequestDate = DateTime.Today;
                     policyRequest.Status = "No";
                     _Db.PolicyRequests.Add(policyRequest);
