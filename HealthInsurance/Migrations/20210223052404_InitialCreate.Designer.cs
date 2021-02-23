@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthInsurance.Migrations
 {
     [DbContext(typeof(HealthInsuranceDbContext))]
-    [Migration("20210204074050_InitialCreate")]
+    [Migration("20210223052404_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,6 +105,12 @@ namespace HealthInsurance.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("varchar(20)");
+
+                    b.Property<string>("description")
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("description2")
+                        .HasColumnType("ntext");
 
                     b.HasKey("CompanyId");
 
@@ -226,6 +232,15 @@ namespace HealthInsurance.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("description1")
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("description2")
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("description3")
+                        .HasColumnType("ntext");
+
                     b.HasKey("HospitalId");
 
                     b.ToTable("Hospitals");
@@ -311,20 +326,13 @@ namespace HealthInsurance.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PolicyRequestId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Reason")
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("varchar(3)");
 
                     b.HasKey("PolicyApprovalId");
-
-                    b.HasIndex("PolicyRequestId")
-                        .IsUnique();
 
                     b.ToTable("PolicyApprovals");
                 });
@@ -371,6 +379,9 @@ namespace HealthInsurance.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("PolicyApprovalId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PolicyId")
                         .HasColumnType("int");
 
@@ -385,6 +396,8 @@ namespace HealthInsurance.Migrations
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("PolicyApprovalId");
 
                     b.HasIndex("PolicyId");
 
@@ -562,15 +575,6 @@ namespace HealthInsurance.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HealthInsurance.Models.PolicyApproval", b =>
-                {
-                    b.HasOne("HealthInsurance.Models.PolicyRequest", "policyRequest")
-                        .WithOne("policyApproval")
-                        .HasForeignKey("HealthInsurance.Models.PolicyApproval", "PolicyRequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HealthInsurance.Models.PolicyEmployee", b =>
                 {
                     b.HasOne("HealthInsurance.Models.Employee", "employee")
@@ -597,6 +601,12 @@ namespace HealthInsurance.Migrations
                     b.HasOne("HealthInsurance.Models.Employee", "Employee")
                         .WithMany("policyRequests")
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthInsurance.Models.PolicyApproval", "policyApproval")
+                        .WithMany("policyRequest")
+                        .HasForeignKey("PolicyApprovalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

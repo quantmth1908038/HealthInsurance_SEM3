@@ -1,9 +1,11 @@
-﻿@{
+﻿@model SetUserRole
+
+@{
     ViewData["Title"] = "EditUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model SetUserRole
+
 
 <h2>EditUser</h2>
 
@@ -23,7 +25,7 @@
     <div class="form-group">
         <label for="Role">Role:</label>
         <select name="Role.Name">
-            @foreach( var r in Model.Roles)
+            @foreach (var r in Model.Roles)
             {
                 <option value="@r.Name">@r.Name</option>
             }

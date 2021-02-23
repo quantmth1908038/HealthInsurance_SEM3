@@ -52,10 +52,12 @@ namespace HealthInsurance.Migrations
                 {
                     CompanyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CompanyName = table.Column<string>(type: "varchar(50)", nullable: true),
                     Address = table.Column<string>(type: "varchar(250)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(20)", nullable: true),
-                    CompanyURL = table.Column<string>(type: "varchar(50)", nullable: true)
+                    CompanyURL = table.Column<string>(type: "varchar(50)", nullable: true),
+                    description = table.Column<string>(type: "ntext", nullable: true),
+                    description2 = table.Column<string>(type: "ntext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,11 +72,30 @@ namespace HealthInsurance.Migrations
                     HospitalName = table.Column<string>(type: "varchar(50)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(50)", nullable: true),
                     Location = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Url = table.Column<string>(type: "varchar(255)", nullable: true)
+                    Url = table.Column<string>(type: "varchar(255)", nullable: true),
+                    description1 = table.Column<string>(type: "ntext", nullable: true),
+                    description2 = table.Column<string>(type: "ntext", nullable: true),
+                    description3 = table.Column<string>(type: "ntext", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hospitals", x => x.HospitalId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PolicyApprovals",
+                columns: table => new
+                {
+                    PolicyApprovalId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Status = table.Column<string>(type: "varchar(3)", nullable: true),
+                    Reason = table.Column<string>(type: "varchar(50)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PolicyApprovals", x => x.PolicyApprovalId);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,9 +237,9 @@ namespace HealthInsurance.Migrations
                 {
                     EmployeeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: false),
                     Designation = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Joindate = table.Column<DateTime>(nullable: false),
+                    Joindate = table.Column<DateTime>(nullable: true),
                     Salary = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
                     FirstName = table.Column<string>(type: "varchar(50)", nullable: true),
                     LastName = table.Column<string>(type: "varchar(50)", nullable: true),
@@ -249,8 +270,8 @@ namespace HealthInsurance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
                     PolicyDesc = table.Column<string>(type: "ntext", nullable: true),
-                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
                     CompanyId = table.Column<int>(nullable: false),
                     HospitalId = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
@@ -272,15 +293,39 @@ namespace HealthInsurance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PolicyActions",
+                columns: table => new
+                {
+                    PolicyActionId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Policydes = table.Column<string>(type: "varchar(250)", nullable: true),
+                    PolicyAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    PolicyDurationInMonths = table.Column<int>(nullable: true),
+                    PolicyApprovalId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PolicyActions", x => x.PolicyActionId);
+                    table.ForeignKey(
+                        name: "FK_PolicyActions_PolicyApprovals_PolicyApprovalId",
+                        column: x => x.PolicyApprovalId,
+                        principalTable: "PolicyApprovals",
+                        principalColumn: "PolicyApprovalId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PolicyEmployees",
                 columns: table => new
                 {
                     PolicyEmployeeId = table.Column<string>(nullable: false),
-                    PolicyDuration = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    PstartDate = table.Column<DateTime>(nullable: false),
-                    pendDate = table.Column<DateTime>(nullable: false),
+                    PolicyDuration = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    PstartDate = table.Column<DateTime>(nullable: true),
+                    pendDate = table.Column<DateTime>(nullable: true),
                     PolicyId = table.Column<int>(nullable: false),
-                    EmployeeId = table.Column<int>(nullable: false)
+                    EmployeeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -305,11 +350,12 @@ namespace HealthInsurance.Migrations
                 {
                     PolicyRequestId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RequestDate = table.Column<DateTime>(nullable: false),
+                    RequestDate = table.Column<DateTime>(nullable: true),
                     Status = table.Column<string>(type: "varchar(3)", nullable: true),
-                    EmployeeId = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false),
-                    PolicyId = table.Column<int>(nullable: false)
+                    EmployeeId = table.Column<int>(nullable: true),
+                    CustomerId = table.Column<int>(nullable: true),
+                    PolicyId = table.Column<int>(nullable: false),
+                    PolicyApprovalId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -327,57 +373,16 @@ namespace HealthInsurance.Migrations
                         principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_PolicyRequests_PolicyApprovals_PolicyApprovalId",
+                        column: x => x.PolicyApprovalId,
+                        principalTable: "PolicyApprovals",
+                        principalColumn: "PolicyApprovalId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_PolicyRequests_Policies_PolicyId",
                         column: x => x.PolicyId,
                         principalTable: "Policies",
                         principalColumn: "PolicyId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PolicyApprovals",
-                columns: table => new
-                {
-                    PolicyApprovalId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    Status = table.Column<string>(type: "varchar(3)", nullable: false),
-                    Reason = table.Column<string>(type: "varchar(50)", nullable: true),
-                    PolicyRequestId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PolicyApprovals", x => x.PolicyApprovalId);
-                    table.ForeignKey(
-                        name: "FK_PolicyApprovals_PolicyRequests_PolicyRequestId",
-                        column: x => x.PolicyRequestId,
-                        principalTable: "PolicyRequests",
-                        principalColumn: "PolicyRequestId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PolicyActions",
-                columns: table => new
-                {
-                    PolicyActionId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Policydes = table.Column<string>(type: "varchar(250)", nullable: true),
-                    PolicyAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    PolicyDurationInMonths = table.Column<int>(nullable: false),
-                    PolicyApprovalId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PolicyActions", x => x.PolicyActionId);
-                    table.ForeignKey(
-                        name: "FK_PolicyActions_PolicyApprovals_PolicyApprovalId",
-                        column: x => x.PolicyApprovalId,
-                        principalTable: "PolicyApprovals",
-                        principalColumn: "PolicyApprovalId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -451,12 +456,6 @@ namespace HealthInsurance.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PolicyApprovals_PolicyRequestId",
-                table: "PolicyApprovals",
-                column: "PolicyRequestId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PolicyEmployees_EmployeeId",
                 table: "PolicyEmployees",
                 column: "EmployeeId");
@@ -475,6 +474,11 @@ namespace HealthInsurance.Migrations
                 name: "IX_PolicyRequests_EmployeeId",
                 table: "PolicyRequests",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PolicyRequests_PolicyApprovalId",
+                table: "PolicyRequests",
+                column: "PolicyApprovalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PolicyRequests_PolicyId",
@@ -506,19 +510,19 @@ namespace HealthInsurance.Migrations
                 name: "PolicyEmployees");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "PolicyApprovals");
-
-            migrationBuilder.DropTable(
                 name: "PolicyRequests");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "PolicyApprovals");
 
             migrationBuilder.DropTable(
                 name: "Policies");

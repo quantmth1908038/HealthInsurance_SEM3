@@ -20,9 +20,7 @@ namespace HealthInsurance.Models
         [Column(TypeName = "varchar(50)")]
         public string Reason { get; set; }
 
-        public int PolicyRequestId { get; set; }
-
-        public PolicyRequest policyRequest { get; set; }
+        public ICollection<PolicyRequest> policyRequest { get; set; }
         public PolicyAction policyAction { get; set; }
     }
 }

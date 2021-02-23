@@ -78,20 +78,23 @@ namespace HealthInsurance.Controllers
                 return NotFound();
             }
             var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId);
+            PolicyApproval policyApproval = new PolicyApproval();
+            policyApproval.Date = DateTime.Today;
+            policyApproval.Status = "No";
+            _context.PolicyApprovals.Add(policyApproval);
+            _context.SaveChanges();
+            decimal Amount = new decimal();
             foreach (var policyRequest in _PolicyRequests)
             {
                 policyRequest.Status = "Yes";
+                Amount += policyRequest.Policy.Amount;
+                policyRequest.PolicyApprovalId = policyApproval.PolicyApprovalId;
                 _context.PolicyRequests.Update(policyRequest);
                 _context.SaveChanges();
-
-                PolicyApproval policyApproval = new PolicyApproval();
-                policyApproval.PolicyRequestId = policyRequest.PolicyRequestId;
-                policyApproval.Amount = policyRequest.Policy.Amount;
-                policyApproval.Date = DateTime.Today;
-                policyApproval.Status = "No";
-                _context.PolicyApprovals.Add(policyApproval);
-                _context.SaveChanges();
             }
+            policyApproval.Amount = Amount;
+            _context.PolicyApprovals.Update(policyApproval);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -22,6 +22,7 @@ namespace HealthInsurance.Models
         public int EmployeeId { get; set; }
         public int CustomerId { get; set; }
         public int PolicyId { get; set; }
+        public int PolicyApprovalId { get; set; }
 
         public Employee Employee { get; set; }
         public Customer Customer { get; set; }

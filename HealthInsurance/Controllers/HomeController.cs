@@ -76,6 +76,28 @@ namespace HealthInsurance.Controllers
             return RedirectToAction("Error");
         }
 
+        [HttpGet]
+        public IActionResult Employee()
+        {
+            return View(new EmployeeViewModel 
+            {
+                IdentityRoles = _repository.Roles.ToList()
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEmployee(EmployeeViewModel employee, IdentityRole role)
+        {
+            employee.ApplicationUser.UserName = employee.ApplicationUser.Email;
+            var result = await _userManager.CreateAsync(employee.ApplicationUser, "123456Aa@");
+            var setRole = await _userManager.AddToRoleAsync(employee.ApplicationUser, role.Name);
+            Employee _employee = new Employee();
+            _employee.ApplicationUserId = employee.ApplicationUser.Id;
+            _repository.Employees.Add(_employee);
+            _repository.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();

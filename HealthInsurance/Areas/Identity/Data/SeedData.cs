@@ -29,7 +29,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         CompanyName = "Bao Viet Insurance",
                         Address = "Ha Noi, Viet Nam",
                         Phone = "0396969696",
-                        CompanyURL = "https://vietcomin.net/uploads/ebaoviet.com/1/Bieutuong/bao_hiem_bao_viet.png",
+                        CompanyURL = "",
                         description = "Bao Viet Group (international transaction name: Baoviet Holdings). Established on January 15, 1965, up to now, Bao Viet has become the leading Finance - Insurance Group in Vietnam and is in the List of Top 50 best listed companies in 2020 voted by Forbes Vietnam. Bao Viet is serving about 20 million customers, equivalent to nearly 20% of Vietnam's population. The Group is headquartered in Hanoi with more than 200 branches and affiliated companies across 63 provinces and cities nationwide.",
                         description2 = "Trong 55 năm hình thành và phát triển, Bảo Việt duy trì kết quả kinh doanh khả quan, lĩnh vực kinh doanh bảo hiểm nhân thọ và bảo hiểm phi nhân thọ giữ vị trí số 1 thị trường. Thông qua việc triển khai hiệu quả các giải pháp kinh doanh, Bảo Việt đã duy trì được sự tăng trưởng ổn định, góp phần đảm bảo thực hiện các nghĩa vụ với ngân sách nhà nước cũng như đảm bảo quyền lợi cho khách hàng, cổ đông, người lao động và cộng đồng."
 
