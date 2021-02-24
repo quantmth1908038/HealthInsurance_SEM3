@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-sm-4">
                     </div>
-                   
+
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light">
@@ -44,7 +44,7 @@
                                     @Html.DisplayNameFor(model => model.City)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.policyRequests)
+                                    Policy Name
                                 </th>
                                 <th style="width:30px;"></th>
                             </tr>
@@ -52,32 +52,37 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FirstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.City)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.policyRequests)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Create", new { id = item.CustomerId, item.FirstName, item.LastName, item.Address, item.City, item.policyRequests, item.ApplicationUserId }, new { @class = "btn btn-success" }) |
-                                    @Html.ActionLink("Delete", "DeleteStd", new { id = item.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td style="width:20px;">
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.City)
+                                    </td>
+                                    <td>
+                                        @foreach (var i in item.policyRequests)
+                                        {
+                                            <p>@Html.DisplayFor(item => i.Policy.PolicyName)</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Create", new { id = item.CustomerId, item.FirstName, item.LastName, item.Address, item.City, item.policyRequests, item.ApplicationUserId }, new { @class = "btn btn-success" }) |
+                                        @Html.ActionLink("Delete", "DeleteStd", new { id = item.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
+                                    </td>
+                                </tr>
                             }
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
-              
+
             </div>
         </div>
     </section>
