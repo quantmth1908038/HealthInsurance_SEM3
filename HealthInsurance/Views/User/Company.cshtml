@@ -1,55 +1,56 @@
 ﻿@model IQueryable<Company>;
 
-<head>
-    <style type="text/css">
-        .header {
-            background-color: #cb7802;
-            width: 980px;
-            height: 98px;
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-size: 17px;
-        }
+    <section id="main-content" style="margin-top: 40px">
+        <section class="wrapper">
+            <div class="table-agile-info">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        User Company
+                    </div>
 
-        section, header, footer {
-            float: left;
-            width: 100%;
-        }
 
-        .container {
-            width: 1120px;
-            margin: auto;
-        }
-
-        .box {
-            border: 5px solid black;
-            margin-top: 30px;
-        }
-
-        .boximg img {
-            width: 300px;
-            margin-top: 40px;
-        }
-
-        .boxtext {
-            margin-bottom: 20px;
-        }
-
-        .name {
-            color: blue;
-            font-size: 24px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .introduce {
-            color: red;
-        }
-
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Phone
+                                    </th>
+                                    <th>
+                                        Location
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="boximg col-md-4">
+                                                <img src="@p.CompanyURL">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @p.CompanyName
+                                        </td>
+                                        <td>
+                                            @p.Address
+                                        </td>
+                                        <td>
+                                            @p.Phone
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+@*=======
         .explain {
             font-weight: bold;
         }
@@ -69,12 +70,17 @@
                             <div class="name">@p.CompanyName</div>
                             <div class="phone"><font color="red">Address:</font> @p.Address</div>
                             <div class="location"><font color="red">Location:</font> @p.Phone</div>
+                            <div class="decs"><font color="red">Description:</font> @p.description
+                                <p>@p.description2</p>
+                            
+                            </div>
+
                             
                         </div>
+>>>>>>> fd2e4cb7f73cb3ab5f80f2a707147b54baee3e92*@
                     </div>
-                
-            }
 
-        </div>
+                </div>
+            </div>
+        </section>
     </section>
-</body>
