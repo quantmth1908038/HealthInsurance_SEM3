@@ -2,6 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 @model UserListViewModel
+<style>
+    td > a {
+        background: #24dea5;
+        padding: 10px 20px;
+        color: white;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+</style>
 
     <section id="main-content">
         <section class="wrapper">
@@ -131,7 +140,7 @@
                                             <td>@u.User.UserName</td>
                                             <td><span class="label label-success">@u.User.Email</span></td>
                                             <td><h5><i class="fa fa-level-up">@*@u.Role.Name*@</i></h5></td>
-                                            <td style="background: #24dea5; padding: 10px 20px; color: white; font-weight: 600; border-radius: 6px;">@Html.ActionLink("Edit", "EditUser", new { UserId = u.User.Id })</td>
+                                            <td>@Html.ActionLink("Edit", "EditUser", new { UserId = u.User.Id })</td>
                                         </tr>
                                         i++;
                                     }
