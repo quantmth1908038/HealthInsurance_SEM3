@@ -69,8 +69,8 @@
                                     @Html.DisplayFor(modelItem => item.policyRequests)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Create", new { id = item.CustomerId, item.FirstName, item.LastName, item.Address, item.City, item.policyRequests, item.ApplicationUserId }, new { @class = "btn btn-success" }) |
-                                    @Html.ActionLink("Delete", "DeleteStd", new { id = item.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId@*, item.FirstName, item.LastName, item.Address, item.City, item.policyRequests, item.ApplicationUserId*@ }, new { @class = "btn btn-success" }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
                                 </td>
                             </tr>
                             }

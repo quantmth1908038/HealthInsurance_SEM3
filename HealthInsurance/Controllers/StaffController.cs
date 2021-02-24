@@ -46,6 +46,50 @@ namespace HealthInsurance.Controllers
             });
         }
 
+        public ActionResult Edit(int Id)
+        {
+            var customer = _Db.Customers.Where(s => s.CustomerId == Id).FirstOrDefault();
+
+            return View(customer);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                _Db.Update(customer);
+                _Db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customer);
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(Customer customer)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        var data = _Db.Customers.Find(customer.CustomerId);
+        //        data.FirstName = customer.FirstName;
+        //        data.LastName = customer.LastName;
+        //        data.Gender = customer.Gender;
+        //        data.Address = customer.Address;
+        //        data.Contact = customer.Contact;
+        //        data.State = customer.State;
+        //        data.Country = customer.Country;
+        //        data.City = customer.City;
+
+        //        _Db.Entry(data).State = EntityState.Modified;
+        //        _Db.SaveChanges();
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    var dataEdit = _Db.Customers.Where(s => s.CustomerId == customer.CustomerId).FirstOrDefault();
+        //    return View(dataEdit);
+        //}
 
 
         [HttpPost]
@@ -80,6 +124,7 @@ namespace HealthInsurance.Controllers
             return RedirectToAction("Create");
         }
 
+
         public async Task<IActionResult> DeleteStd(int id)
         {
             try
@@ -99,6 +144,16 @@ namespace HealthInsurance.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            var customer = _Db.Customers.Where(s => s.CustomerId == id).First();
+            _Db.Customers.Remove(customer);
+            _Db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
