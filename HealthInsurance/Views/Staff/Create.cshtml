@@ -46,6 +46,13 @@
         </div>
     </div>*@
 
+<style>
+    .text-dange {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
 <section id="main-content">
     <section class="wrapper">
         <div class="form-w3layouts">
@@ -57,57 +64,58 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form asp-action="AddRequest">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <form asp-action="AddRequest" id="formStaff">
+                                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
                                     <div class="form-group">
                                         <label asp-for="Customer.FirstName" class="control-label">FirstName</label>
-                                        <input asp-for="Customer.FirstName" class="form-control" />
-                                        <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
+                                        <input asp-for="Customer.FirstName" class="form-control" id="firstname"/>
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.LastName" class="control-label">LastName</label>
-                                        <input asp-for="Customer.LastName" class="form-control" />
-                                        <span asp-validation-for="Customer.LastName" class="text-danger"></span>
+                                        <input asp-for="Customer.LastName" class="form-control" id="lastname" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.Gender" class="control-label">Male</label>
-                                        <input type="radio" asp-for="Customer.Gender" value="Male" class="form-control" />
+                                        <input type="radio" asp-for="Customer.Gender" value="Male" class="form-control" name="gender" />
                                         <label asp-for="Customer.Gender" class="control-label">Female</label>
-                                        <input type="radio" asp-for="Customer.Gender" value="Female" class="form-control" />
-                                        <span asp-validation-for="Customer.Gender" class="text-danger"></span>
+                                        <input type="radio" asp-for="Customer.Gender" value="Female" class="form-control" name="gender" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.Address" class="control-label">Address</label>
-                                        <input asp-for="Customer.Address" class="form-control" />
-                                        <span asp-validation-for="Customer.Address" class="text-danger"></span>
+                                        <input asp-for="Customer.Address" class="form-control" id="address" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.Contact" class="control-label">Contact</label>
-                                        <input asp-for="Customer.Contact" class="form-control" />
-                                        <span asp-validation-for="Customer.Contact" class="text-danger"></span>
+                                        <input asp-for="Customer.Contact" class="form-control" id="contact" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.State" class="control-label">State</label>
-                                        <input asp-for="Customer.State" class="form-control" />
-                                        <span asp-validation-for="Customer.State" class="text-danger"></span>
+                                        <input asp-for="Customer.State" class="form-control" id="state" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.Country" class="control-label">Country</label>
-                                        <input asp-for="Customer.Country" class="form-control" />
-                                        <span asp-validation-for="Customer.Country" class="text-danger"></span>
+                                        <input asp-for="Customer.Country" class="form-control" id="country" />
+                                        <span class="text-dange"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Customer.City" class="control-label">City</label>
-                                        <input asp-for="Customer.City" class="form-control" />
-                                        <span asp-validation-for="Customer.City" class="text-danger"></span>
+                                        <input asp-for="Customer.City" class="form-control" id="city" />
+                                        <span class="text-dange"></span>
+                                        @*<span asp-validation-for="Customer.City" class="text-danger"></span>*@
                                     </div>
                                     @foreach (var PolicyId in Model.ListPolicyIds)
                                     {
-                                        <input type="hidden" name="ListPolicyIds" value="@PolicyId"/>
+                                        <input type="hidden" name="ListPolicyIds" value="@PolicyId" />
                                     }
 
                                     <div class="form-group">
-                                        <input type="submit" value="Save" class="btn btn-default" />
+                                        <button type="submit" class="btn btn-default">Save</button>
                                         <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
                                     </div>
                                 </form>
@@ -120,6 +128,25 @@
         </div>
     </section>
 </section>
+<script src="~/js/validate.js"></script>
+<script>
+    Validator({
+        form: "#formStaff",
+        formGroupSelector: ".form-group",
+        errorSelector: ".text-dange",
+        rules: [
+            Validator.isRequired("#firstname"),
+            Validator.isRequired("#lastname"),
+            Validator.isRequired("#address"),
+            Validator.isRequired("#contact"),
+            Validator.isRequired("#state"),
+            Validator.isRequired("#country"),
+            Validator.isRequired("#city"),
+            Validator.isRequired("input[name='gender']"),
+        ],
+    });
+</script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
