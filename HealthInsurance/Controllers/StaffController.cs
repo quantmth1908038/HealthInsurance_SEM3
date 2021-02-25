@@ -14,7 +14,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.Controllers
 {
-    
+    [Authorize]
+    [Authorize(Roles = "Staff")]
     public class StaffController : Controller
     {
         private readonly HealthInsuranceDbContext _Db;
@@ -156,31 +157,10 @@ namespace HealthInsurance.Controllers
             return RedirectToAction("Create");
         }
 
-
-        public async Task<IActionResult> DeleteStd(int id)
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Delete(int? id)
         {
-            try
-            {
-                var std = await _Db.PolicyRequests.FindAsync(id);
-                if (std != null)
-                {
-                    _Db.PolicyRequests.Remove(std);
-                    await _Db.SaveChangesAsync();
-                }
-
-                return RedirectToAction("Index");
-
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
-        [HttpGet]
-        public ActionResult Delete(int? id)
-        {
-            var customer = _Db.Customers.Where(s => s.CustomerId == id).First();
+            var customer = _Db.Customers.Find(id);
             _Db.Customers.Remove(customer);
             _Db.SaveChanges();
             return RedirectToAction("Index");

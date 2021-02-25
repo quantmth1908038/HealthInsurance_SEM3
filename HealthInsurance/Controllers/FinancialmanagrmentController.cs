@@ -9,10 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using HealthInsurance.Data;
 using HealthInsurance.Models;
 using HealthInsurance.Models.ViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthInsurance.Controllers
 {
+    [Authorize]
+    [Authorize(Roles = "Finance Manager")]
     public class FinancialmanagrmentController : Controller
     {
         private readonly HealthInsuranceDbContext _context;

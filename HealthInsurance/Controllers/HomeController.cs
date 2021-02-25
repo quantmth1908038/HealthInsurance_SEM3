@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations;
 namespace HealthInsurance.Controllers
 {
     [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class HomeController : Controller
     {
         private HealthInsuranceDbContext _repository;

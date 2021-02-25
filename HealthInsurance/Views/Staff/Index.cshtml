@@ -80,7 +80,11 @@
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Delete", "DeleteStd", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
+                                        <form asp-action="Delete">
+                                            <input type="hidden" name="id" value="@item.Customer.CustomerId" />
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Do you really want this record?')">Delete</button>
+                                        </form>
+                                        
                                     </td>
                                 </tr>
                             }

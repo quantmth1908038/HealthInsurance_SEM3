@@ -102,6 +102,24 @@ namespace HealthInsurance.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var User = await _userManager.FindByEmailAsync(Input.Email);
+                    var roleName = await _userManager.GetRolesAsync(User);
+                    if (roleName.FirstOrDefault() == "Administrator")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    if (roleName.FirstOrDefault() == "Manager")
+                    {
+                        return RedirectToAction("Index", "Manager");
+                    }
+                    if (roleName.FirstOrDefault() == "Finance Manager")
+                    {
+                        return RedirectToAction("Index", "Financialmanagrment");
+                    }
+                    if (roleName.FirstOrDefault() == "Staff")
+                    {
+                        return RedirectToAction("Index", "Staff");
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

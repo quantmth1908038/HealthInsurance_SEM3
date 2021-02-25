@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using HealthInsurance.Data;
 using HealthInsurance.Models;
 using HealthInsurance.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.Controllers
 {
+    [Authorize]
+    [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
         private readonly HealthInsuranceDbContext _context;
