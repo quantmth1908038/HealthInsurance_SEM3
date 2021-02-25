@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HealthInsurance.Models.Customer>
+﻿@model IEnumerable<HealthInsurance.Models.ViewModels.CustomerListViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -32,19 +32,22 @@
                                     </label>
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FirstName)
+                                    @Html.DisplayNameFor(model => model.Customer.FirstName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.LastName)
+                                    @Html.DisplayNameFor(model => model.Customer.LastName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Address)
+                                    @Html.DisplayNameFor(model => model.Customer.Address)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.City)
+                                    @Html.DisplayNameFor(model => model.Customer.City)
                                 </th>
                                 <th>
                                     Policy Name
+                                </th>
+                                <th>
+                                    Status
                                 </th>
                                 <th style="width:30px;"></th>
                             </tr>
@@ -56,26 +59,28 @@
                                     <td style="width:20px;">
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                        @Html.DisplayFor(modelItem => item.Customer.FirstName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.LastName)
+                                        @Html.DisplayFor(modelItem => item.Customer.LastName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Address)
+                                        @Html.DisplayFor(modelItem => item.Customer.Address)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.City)
+                                        @Html.DisplayFor(modelItem => item.Customer.City)
                                     </td>
                                     <td>
-                                        @foreach (var i in item.policyRequests)
+                                        @foreach (var i in item.Customer.policyRequests)
                                         {
                                             <p>@Html.DisplayFor(item => i.Policy.PolicyName)</p>
                                         }
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Create", new { id = item.CustomerId, item.FirstName, item.LastName, item.Address, item.City, item.policyRequests, item.ApplicationUserId }, new { @class = "btn btn-success" }) |
-                                        @Html.ActionLink("Delete", "DeleteStd", new { id = item.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "DeleteStd", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
                                     </td>
                                 </tr>
                             }

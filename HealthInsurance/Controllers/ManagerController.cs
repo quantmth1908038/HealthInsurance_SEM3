@@ -63,8 +63,9 @@ namespace HealthInsurance.Controllers
                 Customer = customer,
                 PolicyRequests = _PolicyRequests,
                 Amount = Amount,
-                Emi = Emi
-            });
+                Emi = Emi,
+                Status = _PolicyRequests.Select(x => x.Status).FirstOrDefault()
+            }) ;
         }
 
         public IActionResult Confirm(int? id)
@@ -78,17 +79,15 @@ namespace HealthInsurance.Controllers
             {
                 return NotFound();
             }
-            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
-            PolicyApproval policyApproval = new PolicyApproval();
-
+            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy).Include(m => m.policyApproval);
+            var policyApproval = _PolicyRequests.Select(x => x.policyApproval).FirstOrDefault();
             decimal Amount = new decimal();
+
             foreach (var policyRequest in _PolicyRequests)
             {
                 policyRequest.Status = "Yes";
-                Amount += policyRequest.Policy.Amount;
-                policyApproval = _context.PolicyApprovals.Where(x => x.PolicyApprovalId == policyRequest.PolicyApprovalId).FirstOrDefault();
                 _context.PolicyRequests.Update(policyRequest);
-                _context.SaveChanges();
+                Amount += policyRequest.Policy.Amount;
             }
             policyApproval.Date = DateTime.Today;
             policyApproval.Status = "No";
