@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .text-dange {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
 <section id="main-content">
     <section class="wrapper">
         <div class="form-w3layouts">
@@ -16,22 +23,22 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form asp-action="AddEmployee">
+                                <form asp-action="AddEmployee" id="employee">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="FirstName" class="control-label">FirstName</label>
-                                        <input asp-for="FirstName" class="form-control" />
-                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        <input asp-for="FirstName" class="form-control" id="firstname"/>
+                                        <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="LastName" class="control-label">LastName</label>
-                                        <input asp-for="LastName" class="form-control" />
-                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                        <input asp-for="LastName" class="form-control" id="lastname"/>
+                                        <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ApplicationUser.Email" class="control-label">Email</label>
-                                        <input asp-for="ApplicationUser.Email" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
+                                        <input asp-for="ApplicationUser.Email" class="form-control" id="email"/>
+                                        <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="role" class="control-label">Role</label>
@@ -56,6 +63,20 @@
         </div>
     </section>
 </section>
+<script src="~/js/validate.js"></script>
+<script>
+    Validator({
+        form: "#employee",
+        formGroupSelector: ".form-group",
+        errorSelector: ".text-danger",
+        rules: [
+            Validator.isRequired("#firstname"),
+            Validator.isRequired("#lastname"),
+            Validator.isRequired("#email"),
+            Validator.isEmail("#email", "Email is incorrect"),
+        ],
+    });
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

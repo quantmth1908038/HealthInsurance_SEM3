@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .text-dange {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
 <section id="main-content">
     <section class="wrapper">
         <div class="form-w3layouts">
@@ -12,21 +19,21 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            EditUser
+                            Edit User
                         </header>
                         <div class="panel-body">
                             <div class=" form">
                                 <div asp-validation-summary="All" class="text-danger"></div>
-                                <form asp-action="EditUser" method="post">
+                                <form asp-action="EditUser" method="post" id="edituser">
                                     <div class="form-group">
                                         <label for="UserName">UserName:</label>
-                                        <input name="User.UserName" class="form-control" value="@Model.User.UserName" />
-                                        <span asp-validation-for="User.UserName" class="text-danger"></span>
+                                        <input name="User.UserName" class="form-control" value="@Model.User.UserName" id="username"/>
+                                        <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="Email">Email:</label>
-                                        <input name="User.UserName" class="form-control" value="@Model.User.Email" />
-                                        <span asp-validation-for="User.Email" class="text-danger"></span>
+                                        <input name="User.UserName" class="form-control" value="@Model.User.Email" id="email"/>
+                                        <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="Role">Role:</label>
@@ -50,3 +57,16 @@
         </div>
     </section>
 </section>
+<script src="~/js/validate.js"></script>
+<script>
+    Validator({
+        form: "#edituser",
+        formGroupSelector: ".form-group",
+        errorSelector: ".text-danger",
+        rules: [
+            Validator.isRequired("#username"),
+            Validator.isRequired("#email"),
+            Validator.isEmail("#email", "Email is incorrect"),
+        ],
+    });
+</script>
