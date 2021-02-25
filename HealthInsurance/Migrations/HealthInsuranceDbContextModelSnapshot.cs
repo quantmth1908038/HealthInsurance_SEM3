@@ -99,7 +99,7 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("CompanyURL")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
                         .HasColumnType("varchar(20)");
@@ -264,10 +264,13 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PolicyDesc")
-                        .HasColumnType("ntext");
+                        .HasColumnType("Ntext");
 
                     b.Property<string>("PolicyName")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("UrlDetail")
+                        .HasColumnType("text");
 
                     b.HasKey("PolicyId");
 

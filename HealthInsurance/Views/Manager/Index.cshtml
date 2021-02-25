@@ -96,7 +96,6 @@
                                     @Html.DisplayFor(modelItem => item.Status)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit",  new { @class = "btn btn-success" }) | 
                                     @Html.ActionLink("Detail", "Detail", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
                                 </td>
                             </tr>

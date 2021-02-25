@@ -55,7 +55,7 @@ namespace HealthInsurance.Migrations
                     CompanyName = table.Column<string>(type: "varchar(50)", nullable: true),
                     Address = table.Column<string>(type: "varchar(250)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(20)", nullable: true),
-                    CompanyURL = table.Column<string>(type: "varchar(50)", nullable: true),
+                    CompanyURL = table.Column<string>(type: "text", nullable: true),
                     description = table.Column<string>(type: "ntext", nullable: true),
                     description2 = table.Column<string>(type: "ntext", nullable: true)
                 },
@@ -237,7 +237,7 @@ namespace HealthInsurance.Migrations
                 {
                     EmployeeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(nullable: false),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     Designation = table.Column<string>(type: "varchar(50)", nullable: true),
                     Joindate = table.Column<DateTime>(nullable: true),
                     Salary = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
@@ -269,9 +269,10 @@ namespace HealthInsurance.Migrations
                     PolicyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolicyName = table.Column<string>(type: "varchar(50)", nullable: true),
-                    PolicyDesc = table.Column<string>(type: "ntext", nullable: true),
+                    PolicyDesc = table.Column<string>(type: "Ntext", nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
                     Emi = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    UrlDetail = table.Column<string>(type: "text", nullable: true),
                     CompanyId = table.Column<int>(nullable: false),
                     HospitalId = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
@@ -321,7 +322,7 @@ namespace HealthInsurance.Migrations
                 columns: table => new
                 {
                     PolicyEmployeeId = table.Column<string>(nullable: false),
-                    PolicyDuration = table.Column<decimal>(type: "decimal(8,2)", nullable: true),
+                    PolicyDuration = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
                     PstartDate = table.Column<DateTime>(nullable: true),
                     pendDate = table.Column<DateTime>(nullable: true),
                     PolicyId = table.Column<int>(nullable: false),

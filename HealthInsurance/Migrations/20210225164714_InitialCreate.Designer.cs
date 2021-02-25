@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthInsurance.Migrations
 {
     [DbContext(typeof(HealthInsuranceDbContext))]
-    [Migration("20210223052404_InitialCreate")]
+    [Migration("20210225164714_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,7 +101,7 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("CompanyURL")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
                         .HasColumnType("varchar(20)");
@@ -266,10 +266,13 @@ namespace HealthInsurance.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PolicyDesc")
-                        .HasColumnType("ntext");
+                        .HasColumnType("Ntext");
 
                     b.Property<string>("PolicyName")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("UrlDetail")
+                        .HasColumnType("text");
 
                     b.HasKey("PolicyId");
 

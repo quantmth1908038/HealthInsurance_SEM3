@@ -27,49 +27,42 @@ namespace HealthInsurance.Areas.Identity.Data
                     new Company
                     {
                         CompanyName = "Bao Viet Insurance",
-                        Address = "Ha Noi, Viet Nam",
+                        Address = "Floor 37, Keangnam Ha Noi Landmark Tower, Pham Hung Street, Nam Tu Liem District, Hanoi",
                         Phone = "0396969696",
                         CompanyURL = "",
                         description = "Bao Viet Group (international transaction name: Baoviet Holdings). Established on January 15, 1965, up to now, Bao Viet has become the leading Finance - Insurance Group in Vietnam and is in the List of Top 50 best listed companies in 2020 voted by Forbes Vietnam. Bao Viet is serving about 20 million customers, equivalent to nearly 20% of Vietnam's population. The Group is headquartered in Hanoi with more than 200 branches and affiliated companies across 63 provinces and cities nationwide.",
-                        description2 = "Trong 55 năm hình thành và phát triển, Bảo Việt duy trì kết quả kinh doanh khả quan, lĩnh vực kinh doanh bảo hiểm nhân thọ và bảo hiểm phi nhân thọ giữ vị trí số 1 thị trường. Thông qua việc triển khai hiệu quả các giải pháp kinh doanh, Bảo Việt đã duy trì được sự tăng trưởng ổn định, góp phần đảm bảo thực hiện các nghĩa vụ với ngân sách nhà nước cũng như đảm bảo quyền lợi cho khách hàng, cổ đông, người lao động và cộng đồng."
-
+                        description2 = "For 55 years of establishment and development, Bao Viet has maintained positive business results, the life insurance and non-life insurance business segments hold the No. 1 position in the market. Through the effective implementation of business solutions, Bao Viet has maintained a steady growth, contributing to ensuring the fulfillment of obligations to the state budget as well as ensuring the interests of customers. crowd, employees and community."
+                    },
+                    new Company
+                    {
+                        CompanyName = "Manulife Insurance",
+                        Address = "Floor 2, Manulife Plaza Building, 75 Hoang Van Thai, Tan Phu Ward, District 7, City. Ho Chi Minh",
+                        Phone = "1900 1776",
+                        CompanyURL = "",
+                        description = "As a member of Manulife Financial (Established in 1887 - a leading financial group in the world headquartered in Canada), the first foreign life insurer to present in Vietnam since 1999 and owns a private headquarters building with an investment value of more than 10 million USD. With extensive experience, great economic potential and global reputation, Manulife aims to become the most professional life insurance company in Vietnam.",
+                        description2 = "In addition to traditional insurance distribution channels through insurance agents, Manulife also cooperates with banks to meet the diverse needs of the market and provide customers with the best services. Currently, Manulife is providing a diversified portfolio of life insurance products from traditional insurance to health insurance, education, investment association, retirement…. for more than 800,000 Vietnamese customers. View details of Manulife's life insurance products, compare fees and benefits to choose the best insurance package for yourself."
+                    },
+                    new Company
+                    {
+                        CompanyName = "Dai-ichi Life Insurance Vietnam Company Limited",
+                        Address = "DAI-ICHI LIFE Building, 149-151 Nguyen Van Troi, Ward 11, Phu Nhuan District, City. Ho Chi Minh",
+                        Phone = "028 3810 0888",
+                        CompanyURL = "",
+                        description = "Established on January 18, 2007, a member of The Dai-ichi Life Insurance Company, Limited (“Dai-ichi Life”) - Japan, one of the leading life insurance companies in Japan and In the world. According to data provided by Dai-ichi Vietnam, the company's total premium revenue in 2019 is over 13,000 billion VND, up 28 times since its establishment, up 14% compared to 2018 and accounting for 12% of the market. part of total fee revenue, continues to maintain its position as one of the four leading insurance companies in Vietnam. Profit after tax of the Company exceeded 1,000 billion VND, reaching nearly 1,300 billion VND. As of December 31, 2019, the total assets managed by Dai-ichi Life Vietnam reached more than VND 30,000 billion. Currently, Dai-ichi Life Vietnam is serving over 3 million customers nationwide. Dai-ichi Vietnam's life insurance products are diversified in terms of premiums suitable to each family's economic conditions.",
+                        description2 = ""
+                    },
+                    new Company
+                    {
+                        CompanyName = "Sun Life Vietnam Insurance Company Limited",
+                        Address = "Ha Noi, Viet Nam",
+                        Phone = "0396969696",
+                        CompanyURL = "",
+                        description = "In January 2013, PVI Sun Life was established by PVI Joint Stock Company and Sun Life Assurance Company of Canada (Sun Life). As of December 31, 2015, Sun Life increased its holding rate to 75%, and on November 7, 2016, with the approval of the Ministry of Finance, Sun Life bought another 25% of the capital. the remaining contribution from PVI and become a life insurance company with 100% Canadian capital operating in Vietnam with a new brand name Sun Life Vietnam Limited Liability Company (Sun Life Vietnam).",
+                        description2 = "Sun Life Vietnam's strategy focuses on Client for Life in which customers are the focus of business activities. The company's mission is to commit to helping Vietnamese customers achieve lifetime financial security with a wide range of savings and protection products. Up to now, Sun Life Vietnam has become one of the leading life insurers in the market and a pioneer in the retirement life insurance industry serving both individual and corporate customers"
                     }
                     );
                 context.SaveChanges();
             }
-
-            //if (!context.Employees.Any())
-            //{
-            //    context.Employees.AddRange(
-            //        new Employee
-            //        {
-            //            Designation = "",
-            //            Joindate = DateTime.Parse("2020-12-02"),
-            //            Salary = 1200,
-            //            FirstName = "Cristiano",
-            //            LastName = "Ronaldo",
-            //            Address = "Turin, Italya",
-            //            Contact = "056565656",
-            //            State = "18 Turin CIty",
-            //            Country = "Italya",
-            //            City = "Turin"
-            //        },
-            //        new Employee
-            //        {
-            //            Designation = "",
-            //            Joindate = DateTime.Parse("2020-10-02"),
-            //            Salary = 1100,
-            //            FirstName = "Lionel",
-            //            LastName = "Messi",
-            //            Address = "",
-            //            Contact = "066565656",
-            //            State = "",
-            //            Country = "Barcelona",
-            //            City = "Spain"
-            //        }
-            //        );
-            //    context.SaveChanges();
-            //}
 
             if (!context.Hospitals.Any())
             {
@@ -117,53 +110,198 @@ namespace HealthInsurance.Areas.Identity.Data
                 context.Policies.AddRange(
                     new Policy
                     {
-                        PolicyName = "Bao Viet An Gia",
+                        PolicyName = "Bao Viet An Gia - Bronze",
                         PolicyDesc = "Insurance packages for individuals and families.All citizens and foreigners residing in Vietnam from 15 days of age to 60 years old, renew until 65 years old",
-                        Amount = 1200,
-                        Emi = 12,
+                        Amount = 4043,
+                        Emi = 2500,
+                        UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
                         CompanyId = 1,
                         HospitalId = "vietduc"
                     },
 
                     new Policy
                     {
-                        PolicyName = "AonCare Insurance",
+                        PolicyName = "Bao Viet An Gia - Sliver",
                         PolicyDesc = "Insurance package for companies, agencies. Insured is any Vietnamese citizen or foreigner residing in Vietnam from 12 months to 65 years old.",
-                        Amount = 1300,
-                        Emi = 13,
+                        Amount = 6000,
+                        Emi = 3000,
+                        UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
                         CompanyId = 1,
-                        HospitalId = "bachmai"
+                        HospitalId = "vietduc"
                     },
 
                      new Policy
                      {
-                         PolicyName = "Child Insurance",
+                         PolicyName = "Bao Viet An Gia - Gold",
                          PolicyDesc = "Diversified insurance benefits, suitable for many levels of budgets and needs",
-                         Amount = 1000,
-                         Emi = 10,
+                         Amount = 10000,
+                         Emi = 4500,
+                         UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
                          CompanyId = 1,
                          HospitalId = "vietduc"
                      },
 
                       new Policy
                       {
-                          PolicyName = "Bao Viet Kcare",
+                          PolicyName = "Bao Viet An Gia - Platinum",
                           PolicyDesc = "Insurance benefits are paid in full package for customers. Insurance benefits are paid immediately after the first diagnosis when the customer needs it most ",
-                          Amount = 1500,
-                          Emi = 1500,
+                          Amount = 15000,
+                          Emi = 6400,
+                          UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
                           CompanyId = 1,
-                          HospitalId = "bachmai"
+                          HospitalId = "vietduc"
                       },
 
                        new Policy
                        {
-                           PolicyName = "Super VIP Insurance Aetna",
+                           PolicyName = "Bao Viet An Gia - Diamond",
                            PolicyDesc = "Including 5 packages of programs for individual customers, organizations with medical examination and treatment needs in the world with over 1 million affiliated hospitals.",
-                           Amount = 3000,
-                           Emi = 30,
+                           Amount = 20000,
+                           Emi = 7000,
+                           UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
                            CompanyId = 1,
-                           HospitalId = "k"
-                       }
+                           HospitalId = "vietduc"
+                       },
+
+                        
+                       
+                       new Policy
+                        {
+                            PolicyName = "Manulife infant insurance - Select",
+                            PolicyDesc = "",
+                            Amount = 50000,
+                            Emi = 4000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 2,
+                            HospitalId = "bachmai"
+                       },
+                        new Policy
+                        {
+                            PolicyName = "Manulife infant insurance - Essential",
+                            PolicyDesc = "",
+                            Amount = 100000,
+                            Emi = 10000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 2,
+                            HospitalId = "bachmai"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Manulife infant insurance - Classic",
+                            PolicyDesc = "",
+                            Amount = 200000,
+                            Emi = 18000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 2,
+                            HospitalId = "bachmai"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Manulife infant insurance - Gold",
+                            PolicyDesc = "",
+                            Amount = 250000,
+                            Emi = 2100,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 2,
+                            HospitalId = "bachmai"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Manulife infant insurance - Diamond",
+                            PolicyDesc = "",
+                            Amount = 500000,
+                            Emi = 4000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 2,
+                            HospitalId = "bachmai"
+                        },
+
+
+
+                        new Policy
+                        {
+                            PolicyName = "Dai-ichi cancer insurance - I",
+                            PolicyDesc = "",
+                            Amount = 13000,
+                            Emi = 1000,                           
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
+                            CompanyId = 3,
+                            HospitalId = "k"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Dai-ichi cancer insurance - II",
+                            PolicyDesc = "",
+                            Amount = 25400,
+                            Emi = 1850,  
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
+                            CompanyId = 3,
+                            HospitalId = "vietduc"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Dai-ichi cancer insurance - III",
+                            PolicyDesc = "",
+                            Amount = 50000,
+                            Emi = 3500,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
+                            CompanyId = 3,
+                            HospitalId = "vietduc"
+                        },
+
+
+
+                        new Policy
+                        {
+                            PolicyName = "Sun Life INTERCARE VIP - Select",
+                            PolicyDesc = "",
+                            Amount = 44000,
+                            Emi = 4400,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 4,
+                            HospitalId = "vietduc"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Sun Life INTERCARE VIP - Essential",
+                            PolicyDesc = "",
+                            Amount = 80000,
+                            Emi = 8000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 4,
+                            HospitalId = "vietduc"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Sun Life INTERCARE VIP - Classic",
+                            PolicyDesc = "",
+                            Amount = 160000,
+                            Emi = 15000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 4,
+                            HospitalId = "vietduc"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Sun Life INTERCARE VIP - Gold",
+                            PolicyDesc = "",
+                            Amount = 200000,
+                            Emi = 20000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 4,
+                            HospitalId = "vietduc"
+                        },
+                        new Policy
+                        {
+                            PolicyName = "Sun Life INTERCARE VIP - Diamond",
+                            PolicyDesc = "",
+                            Amount = 400000,
+                            Emi = 40000,
+                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
+                            CompanyId = 4,
+                            HospitalId = "vietduc"
+                        }
+
                     );
                 context.SaveChanges();
             }              

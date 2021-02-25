@@ -53,6 +53,7 @@ namespace HealthInsurance.Controllers
             {
                 return NotFound();
             }
+            var _policy = _context.Policies.Include(m => m.company).Include(m => m.hospital).ToList();
             var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
             decimal Amount = new decimal();
             decimal Emi = new decimal();

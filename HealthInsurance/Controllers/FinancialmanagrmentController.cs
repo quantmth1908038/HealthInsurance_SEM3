@@ -50,7 +50,8 @@ namespace HealthInsurance.Controllers
             if (id == null)
             {
                 return NotFound();
-            } 
+            }
+            var _policy = _context.Policies.Include(m => m.company).Include(m => m.hospital).ToList();
             var customer = _context.Customers.Find(id);
             var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy).Include(m => m.policyApproval);
             if (customer == null)
