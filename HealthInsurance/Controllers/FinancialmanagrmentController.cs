@@ -23,18 +23,70 @@ namespace HealthInsurance.Controllers
 
         public IActionResult Index()
         {
+            var _PolicyRequest = _context.PolicyRequests.ToList();
+            var _PolicyApproval = _context.PolicyApprovals.ToList();
+            var _PolicyAction = _context.PolicyActions.ToList();
             var _customers = _context.Customers.ToList();
             List<ApprovalListViewModel> approvalListViewModels = new List<ApprovalListViewModel>();
             foreach(var customer in _customers)
             {
                 ApprovalListViewModel approvalListViewModel = new ApprovalListViewModel();
                 approvalListViewModel.Customer = customer;
-                var policyApprovalId = customer.policyRequests.FirstOrDefault().PolicyApprovalId;
-                approvalListViewModel.policyApproval = _context.PolicyApprovals.Where(x => x.PolicyApprovalId == customer.policyRequests.FirstOrDefault().PolicyApprovalId).FirstOrDefault();
+                if (customer.policyRequests != null)
+                {
+                    var policyApprovalId = customer.policyRequests.FirstOrDefault().PolicyApprovalId;
+                    approvalListViewModel.policyApproval = _context.PolicyApprovals.Where(x => x.PolicyApprovalId == customer.policyRequests.FirstOrDefault().PolicyApprovalId).FirstOrDefault();
+                }
                 approvalListViewModels.Add(approvalListViewModel);
             }
             
             return View(approvalListViewModels);
         }
+
+        public IActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            } 
+            var customer = _context.Customers.Find(id);
+            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy).Include(m => m.policyApproval);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var _PolicyApproval = _PolicyRequests.FirstOrDefault().policyApproval;
+
+            return View(new ApprovalListViewModel
+            {
+                Customer = customer,
+                policyApproval = _PolicyApproval
+            });
+        }
+
+        public IActionResult Confirm(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var customer = _context.Customers.Find(id);
+            var _PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy).Include(m => m.policyApproval);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var _PolicyApproval = _PolicyRequests.FirstOrDefault().policyApproval;
+            PolicyAction policyAction = new PolicyAction();
+            _PolicyApproval.Status = "Yes";
+            policyAction.PolicyAmount = _PolicyApproval.Amount;
+            policyAction.PolicyApprovalId = _PolicyApproval.PolicyApprovalId;
+            policyAction.PolicyName = customer.FirstName + customer.LastName + _PolicyApproval.PolicyApprovalId;
+            _context.PolicyApprovals.Update(_PolicyApproval);
+            _context.PolicyActions.Add(policyAction);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

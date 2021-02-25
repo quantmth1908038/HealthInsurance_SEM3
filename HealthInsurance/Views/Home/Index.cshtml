@@ -139,7 +139,7 @@
                                             <th scope="row">@i</th>
                                             <td>@u.User.UserName</td>
                                             <td><span class="label label-success">@u.User.Email</span></td>
-                                            <td><h5><i class="fa fa-level-up">@*@u.Role.Name*@</i></h5></td>
+                                            <td><h5><i class="fa fa-level-up">@u.Role.Name</i></h5></td>
                                             <td>@Html.ActionLink("Edit", "EditUser", new { UserId = u.User.Id })</td>
                                         </tr>
                                         i++;
