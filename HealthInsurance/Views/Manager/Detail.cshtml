@@ -107,7 +107,7 @@
                         </div>
                         <div style="text-align: center">
                             <a asp-action="Edit" asp-route-id="@Model.Customer.CustomerId" class="btn btn-success">Edit</a> |
-                            <a asp-action="Confirm" class="btn btn-danger" asp-route-id="@Model.Customer.CustomerId">Confirm</a> |
+                            <a asp-action="Confirm" class="btn btn-danger" asp-route-id="@Model.Customer.CustomerId" onclick = "return confirm('Do you really want this record?')">Confirm</a> |
                             <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
                         </div>
                         </div>

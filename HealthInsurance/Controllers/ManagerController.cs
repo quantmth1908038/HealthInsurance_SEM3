@@ -33,6 +33,7 @@ namespace HealthInsurance.Controllers
                     RequestListViewModel.Amount += policyRequest.Policy.Amount;
                     RequestListViewModel.Emi += policyRequest.Policy.Emi;
                 }
+                RequestListViewModel.Status = RequestListViewModel.PolicyRequests.Select(x => x.Status).FirstOrDefault();
                 RequestListViewModels.Add(RequestListViewModel);
             }
             return View(RequestListViewModels);
@@ -64,7 +65,6 @@ namespace HealthInsurance.Controllers
                 PolicyRequests = _PolicyRequests,
                 Amount = Amount,
                 Emi = Emi,
-                Status = _PolicyRequests.Select(x => x.Status).FirstOrDefault()
             }) ;
         }
 

@@ -11,5 +11,7 @@ namespace HealthInsurance.Models.ViewModels
     {
         public ApplicationUser ApplicationUser { get; set; }
         public List<IdentityRole> IdentityRoles { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

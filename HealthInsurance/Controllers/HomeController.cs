@@ -33,13 +33,13 @@ namespace HealthInsurance.Controllers
         {
             var ListUsers = _repository.Users.ToList();
             List<ListUserRole> ListUserRoles = new List<ListUserRole>();
-            foreach(var user in ListUsers)
+            foreach (var user in ListUsers)
             {
                 var UserRole = _repository.UserRoles.Where(x => x.UserId == user.Id).Select(x => x.RoleId).FirstOrDefault();
                 ListUserRole listUserRole = new ListUserRole
                 {
                     User = user,
-                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault() 
+                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault()
                 };
                 ListUserRoles.Add(listUserRole);
             }
@@ -56,7 +56,7 @@ namespace HealthInsurance.Controllers
         [HttpGet]
         public IActionResult EditUser(string UserId)
         {
-            return View(new SetUserRole { 
+            return View(new SetUserRole {
                 User = _repository.Users.Where(x => x.Id == UserId).FirstOrDefault(),
                 Roles = roleManager.Roles.ToList()
             });
@@ -69,7 +69,7 @@ namespace HealthInsurance.Controllers
             var roles = await _userManager.GetRolesAsync(User);
             var check = await _userManager.RemoveFromRolesAsync(User, roles.ToArray());
             var result = await _userManager.AddToRoleAsync(User, role.Name);
-            if(result.Succeeded && check.Succeeded)
+            if (result.Succeeded && check.Succeeded)
             {
                 return RedirectToAction("Index");
             }
@@ -79,7 +79,7 @@ namespace HealthInsurance.Controllers
         [HttpGet]
         public IActionResult Employee()
         {
-            return View(new EmployeeViewModel 
+            return View(new EmployeeViewModel
             {
                 IdentityRoles = _repository.Roles.ToList()
             });
@@ -93,8 +93,10 @@ namespace HealthInsurance.Controllers
             var setRole = await _userManager.AddToRoleAsync(employee.ApplicationUser, role.Name);
             Employee _employee = new Employee();
             _employee.ApplicationUserId = employee.ApplicationUser.Id;
+            _employee.FirstName = employee.FirstName;
+            _employee.LastName = employee.LastName;
             _repository.Employees.Add(_employee);
-            _repository.SaveChanges();
+            _repository.SaveChanges();;
             return RedirectToAction("Index");
         }
 

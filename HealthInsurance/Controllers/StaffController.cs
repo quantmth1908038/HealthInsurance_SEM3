@@ -36,22 +36,28 @@ namespace HealthInsurance.Controllers
                 var _customerListViewModel = new CustomerListViewModel();
                 _customerListViewModel.Customer = customer;
                 var Request = PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefault();
-                var StatusRequest = Request.Status;
-                var StatusApproval = Request.policyApproval.Status;
-                if (StatusRequest == "No")
+                if (Request != null)
                 {
-                    _customerListViewModel.Status = "Unsuccess Request";
-                }
-                if (StatusRequest == "Yes")
+                    var StatusRequest = Request.Status;
+                    var StatusApproval = Request.policyApproval.Status;
+                    if (StatusRequest == "No")
+                    {
+                        _customerListViewModel.Status = "Unsuccess Request";
+                    }
+                    if (StatusRequest == "Yes")
+                    {
+                        if (StatusApproval == "No")
+                        {
+                            _customerListViewModel.Status = "Success Request - Check Payment";
+                        }
+                        if (StatusApproval == "Yes")
+                        {
+                            _customerListViewModel.Status = "Successfull";
+                        }
+                    }
+                }else
                 {
-                    if (StatusApproval == "No")
-                    {
-                        _customerListViewModel.Status = "Success Request - Check Payment";
-                    }
-                    if (StatusApproval == "Yes")
-                    {
-                        _customerListViewModel.Status = "Successfull";
-                    }
+                    _customerListViewModel.Status = "Fail";
                 }
                 CustomerListViewModel.Add(_customerListViewModel);
             }
