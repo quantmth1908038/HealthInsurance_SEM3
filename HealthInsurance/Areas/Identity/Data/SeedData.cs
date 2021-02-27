@@ -111,7 +111,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     new Policy
                     {
                         PolicyName = "Bao Viet An Gia - Bronze",
-                        PolicyDesc = "Insurance packages for individuals and families.All citizens and foreigners residing in Vietnam from 15 days of age to 60 years old, renew until 65 years old",
+                        PolicyDesc = "Health is the most valuable asset of people, with health insurance in Bao Viet An Gia, you and your family will really feel secure because our goal is “Take care of your health”.The premium health insurance product package brings you 5 health insurance programs with outstanding benefits to best meet the health care needs of you and your family.",
                         Amount = 4043,
                         Emi = 2500,
                         UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
@@ -122,7 +122,7 @@ namespace HealthInsurance.Areas.Identity.Data
                     new Policy
                     {
                         PolicyName = "Bao Viet An Gia - Sliver",
-                        PolicyDesc = "Insurance package for companies, agencies. Insured is any Vietnamese citizen or foreigner residing in Vietnam from 12 months to 65 years old.",
+                        PolicyDesc = "Health is the most valuable asset of people, with health insurance in Bao Viet An Gia, you and your family will really feel secure because our goal is “Take care of your health”.The premium health insurance product package brings you 5 health insurance programs with outstanding benefits to best meet the health care needs of you and your family.",
                         Amount = 6000,
                         Emi = 3000,
                         UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
@@ -133,7 +133,7 @@ namespace HealthInsurance.Areas.Identity.Data
                      new Policy
                      {
                          PolicyName = "Bao Viet An Gia - Gold",
-                         PolicyDesc = "Diversified insurance benefits, suitable for many levels of budgets and needs",
+                         PolicyDesc = "Health is the most valuable asset of people, with health insurance in Bao Viet An Gia, you and your family will really feel secure because our goal is “Take care of your health”.The premium health insurance product package brings you 5 health insurance programs with outstanding benefits to best meet the health care needs of you and your family.",
                          Amount = 10000,
                          Emi = 4500,
                          UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
@@ -144,7 +144,7 @@ namespace HealthInsurance.Areas.Identity.Data
                       new Policy
                       {
                           PolicyName = "Bao Viet An Gia - Platinum",
-                          PolicyDesc = "Insurance benefits are paid in full package for customers. Insurance benefits are paid immediately after the first diagnosis when the customer needs it most ",
+                          PolicyDesc = "Health is the most valuable asset of people, with health insurance in Bao Viet An Gia, you and your family will really feel secure because our goal is “Take care of your health”.The premium health insurance product package brings you 5 health insurance programs with outstanding benefits to best meet the health care needs of you and your family.",
                           Amount = 15000,
                           Emi = 6400,
                           UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
@@ -155,7 +155,7 @@ namespace HealthInsurance.Areas.Identity.Data
                        new Policy
                        {
                            PolicyName = "Bao Viet An Gia - Diamond",
-                           PolicyDesc = "Including 5 packages of programs for individual customers, organizations with medical examination and treatment needs in the world with over 1 million affiliated hospitals.",
+                           PolicyDesc = "Health is the most valuable asset of people, with health insurance in Bao Viet An Gia, you and your family will really feel secure because our goal is “Take care of your health”.The premium health insurance product package brings you 5 health insurance programs with outstanding benefits to best meet the health care needs of you and your family.",
                            Amount = 20000,
                            Emi = 7000,
                            UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/04/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-B%E1%BA%A3o-Vi%E1%BB%87t-An-Gia-1.png",
@@ -168,7 +168,7 @@ namespace HealthInsurance.Areas.Identity.Data
                        new Policy
                         {
                             PolicyName = "Manulife infant insurance - Select",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium health protection product for your baby. Customers who join the insurance are protected in the most comprehensive way, enjoy the quality of high-class medical services at top hospitals in Vietnam and abroad. Some highlights of Bao Viet InterCare package.",
                             Amount = 50000,
                             Emi = 4000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -178,7 +178,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Manulife infant insurance - Essential",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium health protection product for your baby. Customers who join the insurance are protected in the most comprehensive way, enjoy the quality of high-class medical services at top hospitals in Vietnam and abroad. Some highlights of Bao Viet InterCare package.",
                             Amount = 100000,
                             Emi = 10000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -188,7 +188,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Manulife infant insurance - Classic",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium health protection product for your baby. Customers who join the insurance are protected in the most comprehensive way, enjoy the quality of high-class medical services at top hospitals in Vietnam and abroad. Some highlights of Bao Viet InterCare package.",
                             Amount = 200000,
                             Emi = 18000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -198,7 +198,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Manulife infant insurance - Gold",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium health protection product for your baby. Customers who join the insurance are protected in the most comprehensive way, enjoy the quality of high-class medical services at top hospitals in Vietnam and abroad. Some highlights of Bao Viet InterCare package.",
                             Amount = 250000,
                             Emi = 2100,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -208,7 +208,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Manulife infant insurance - Diamond",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium health protection product for your baby. Customers who join the insurance are protected in the most comprehensive way, enjoy the quality of high-class medical services at top hospitals in Vietnam and abroad. Some highlights of Bao Viet InterCare package.",
                             Amount = 500000,
                             Emi = 4000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -221,7 +221,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Dai-ichi cancer insurance - I",
-                            PolicyDesc = "",
+                            PolicyDesc = "As an insurance product designed specifically for cancer, Bao Viet K-Care offers four diverse and attractive insurance benefits for policyholders, including: cancer benefits (period early and late periods), hospitalization benefit, cancer death benefit and accident death benefit.",
                             Amount = 13000,
                             Emi = 1000,                           
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
@@ -231,7 +231,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Dai-ichi cancer insurance - II",
-                            PolicyDesc = "",
+                            PolicyDesc = "As an insurance product designed specifically for cancer, Bao Viet K-Care offers four diverse and attractive insurance benefits for policyholders, including: cancer benefits (period early and late periods), hospitalization benefit, cancer death benefit and accident death benefit.",
                             Amount = 25400,
                             Emi = 1850,  
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
@@ -241,7 +241,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Dai-ichi cancer insurance - III",
-                            PolicyDesc = "",
+                            PolicyDesc = "As an insurance product designed specifically for cancer, Bao Viet K-Care offers four diverse and attractive insurance benefits for policyholders, including: cancer benefits (period early and late periods), hospitalization benefit, cancer death benefit and accident death benefit.",
                             Amount = 50000,
                             Emi = 3500,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/07/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-g%C3%B3i-b%E1%BA%A3o-hi%E1%BB%83m-ung-th%C6%B0-B%E1%BA%A3o-Vi%E1%BB%87t.png",
@@ -254,7 +254,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Sun Life INTERCARE VIP - Select",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium healthcare insurance product designed for those who need special quality healthcare. Customers who join the insurance are protected in the most comprehensive way, enjoy the high quality of medical services at top hospitals in Vietnam and abroad.",
                             Amount = 44000,
                             Emi = 4400,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -264,7 +264,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Sun Life INTERCARE VIP - Essential",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium healthcare insurance product designed for those who need special quality healthcare. Customers who join the insurance are protected in the most comprehensive way, enjoy the high quality of medical services at top hospitals in Vietnam and abroad.",
                             Amount = 80000,
                             Emi = 8000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -274,7 +274,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Sun Life INTERCARE VIP - Classic",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium healthcare insurance product designed for those who need special quality healthcare. Customers who join the insurance are protected in the most comprehensive way, enjoy the high quality of medical services at top hospitals in Vietnam and abroad.",
                             Amount = 160000,
                             Emi = 15000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -284,7 +284,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Sun Life INTERCARE VIP - Gold",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium healthcare insurance product designed for those who need special quality healthcare. Customers who join the insurance are protected in the most comprehensive way, enjoy the high quality of medical services at top hospitals in Vietnam and abroad.",
                             Amount = 200000,
                             Emi = 20000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
@@ -294,7 +294,7 @@ namespace HealthInsurance.Areas.Identity.Data
                         new Policy
                         {
                             PolicyName = "Sun Life INTERCARE VIP - Diamond",
-                            PolicyDesc = "",
+                            PolicyDesc = "This is a premium healthcare insurance product designed for those who need special quality healthcare. Customers who join the insurance are protected in the most comprehensive way, enjoy the high quality of medical services at top hospitals in Vietnam and abroad.",
                             Amount = 400000,
                             Emi = 40000,
                             UrlDetail = "https://ibaohiem.vn/wp-content/uploads/2018/08/B%E1%BA%A3ng-quy%E1%BB%81n-l%E1%BB%A3i-n%E1%BB%99i-tr%C3%BA-g%C3%B3i-B%E1%BA%A3o-Vi%E1%BB%87t-Intercare.png",
