@@ -27,41 +27,93 @@ namespace HealthInsurance.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            var PolicyRequests = _Db.PolicyRequests.Include(m => m.Policy).Include(m => m.policyApproval).ToList();
-            var CustomerList = _Db.Customers.Include(m => m.policyRequests).ToList();
             List<CustomerListViewModel> CustomerListViewModel = new List<CustomerListViewModel>();
-            foreach( var customer in CustomerList)
-            {
-                var _customerListViewModel = new CustomerListViewModel();
-                _customerListViewModel.Customer = customer;
-                var Request = PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefault();
-                if (Request != null)
-                {
-                    var StatusRequest = Request.Status;
-                    var StatusApproval = Request.policyApproval.Status;
-                    if (StatusRequest == "No")
-                    {
-                        _customerListViewModel.Status = "Unsuccess Request";
-                    }
-                    if (StatusRequest == "Yes")
-                    {
-                        if (StatusApproval == "No")
+            var PR = _Db.PolicyRequests.Include(m => m.Policy).Include(m => m.policyApproval).ToList();
+            var data1 = from table1 in _Db.Customers.Include(m => m.policyRequests)
+                        join table2 in _Db.PolicyRequests on table1.CustomerId equals table2.CustomerId into dt2
+                        from table2 in dt2.DefaultIfEmpty()
+                        select new CustomerListViewModel
                         {
-                            _customerListViewModel.Status = "Success Request - Check Payment";
-                        }
-                        if (StatusApproval == "Yes")
+                            Customer = table1                     
+                        };
+
+            if (!string.IsNullOrEmpty(searchString))
+            {        
+                CustomerListViewModel cuslistview = new CustomerListViewModel();
+                data1 = data1.Where(data1 => data1.Customer.LastName.Contains(searchString) || data1.Customer.FirstName.Contains(searchString) || data1.Customer.policyRequests.FirstOrDefault().Status.Contains(searchString));
+                var viewlistcus = data1.Cast<CustomerListViewModel>();
+                foreach( var cus in data1)
+                {
+                    var Req = cus.Customer.policyRequests.FirstOrDefault();
+                    if (Request != null)
+                    {
+                        var StatusRequest = Req.Status;
+                        var StatusApproval = Req.policyApproval.Status;
+                        if (StatusRequest == "No")
                         {
-                            _customerListViewModel.Status = "Successfull";
+                            cus.Status = "Unsuccess Request";
+                        }
+                        if (StatusRequest == "Yes")
+                        {
+                            if (StatusApproval == "No")
+                            {
+                                cus.Status = "Success Request - Check Payment";
+                            }
+                            if (StatusApproval == "Yes")
+                            {
+                                cus.Status = "Successfull";
+                            }
                         }
                     }
-                }else
-                {
-                    _customerListViewModel.Status = "Fail";
+                    else
+                    {
+                        cus.Status = "Fail";
+                    }
+                    CustomerListViewModel.Add(cus);
                 }
-                CustomerListViewModel.Add(_customerListViewModel);
+
+                return View(CustomerListViewModel);
             }
+            else
+            {
+                var PolicyRequests = _Db.PolicyRequests.Include(m => m.Policy).Include(m => m.policyApproval).ToList();
+                var CustomerList = _Db.Customers.Include(m => m.policyRequests).ToList();
+                List<CustomerListViewModel> customerListViewModels = new List<CustomerListViewModel>();
+                foreach (var customer in CustomerList)
+                {
+                    var _customerListViewModel = new CustomerListViewModel();
+                    _customerListViewModel.Customer = customer;
+                    var Request = PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefault();
+                    if (Request != null)
+                    {
+                        var StatusRequest = Request.Status;
+                        var StatusApproval = Request.policyApproval.Status;
+                        if (StatusRequest == "No")
+                        {
+                            _customerListViewModel.Status = "Unsuccess Request";
+                        }
+                        if (StatusRequest == "Yes")
+                        {
+                            if (StatusApproval == "No")
+                            {
+                                _customerListViewModel.Status = "Success Request - Check Payment";
+                            }
+                            if (StatusApproval == "Yes")
+                            {
+                                _customerListViewModel.Status = "Successfull";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _customerListViewModel.Status = "Fail";
+                    }
+                    CustomerListViewModel.Add(_customerListViewModel);
+                }
+            }
+            
             return View(CustomerListViewModel);
         }
 

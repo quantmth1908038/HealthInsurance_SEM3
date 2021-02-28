@@ -22,5 +22,10 @@ namespace HealthInsurance.Models
 
         public ICollection<PolicyRequest> policyRequest { get; set; }
         public PolicyAction policyAction { get; set; }
+
+        public static implicit operator string(PolicyApproval v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

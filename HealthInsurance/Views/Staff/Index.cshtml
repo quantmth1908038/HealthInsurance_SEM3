@@ -23,6 +23,18 @@
 
                 </div>
                 <div class="table-responsive">
+                    <form asp-controller="Staff" asp-action="Index" method="get" style="padding: 5px 0 5px 14px">
+                        <p>
+                            @*<input type="text" name="SearchString" />*@                         
+                            <select  name="SearchString" id="SearchString">
+                                <option value="No">Unsuccess Request</option>
+                                <option value="">Success Request - Check Payment</option>
+                                <option value="">Successfull</option>                          
+                                                     
+                            </select>
+                            <input type="submit" id="Search" value="Search"/>
+                        </p>
+                    </form>
                     <table class="table table-striped b-t b-light">
                         <thead>
                             <tr>
@@ -84,7 +96,7 @@
                                             <input type="hidden" name="id" value="@item.Customer.CustomerId" />
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Do you really want this record?')">Delete</button>
                                         </form>
-                                        
+
                                     </td>
                                 </tr>
                             }
