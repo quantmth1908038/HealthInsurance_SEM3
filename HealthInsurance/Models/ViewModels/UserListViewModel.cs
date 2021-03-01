@@ -24,6 +24,7 @@ namespace HealthInsurance.Models.ViewModels
     public class UserView
     {
         public ApplicationUser User { get; set; }
+        public Customer Customer { get; set; }
         public string Status { get; set; }
         public decimal Amount { get; set; }
         public decimal Emi { get; set; }

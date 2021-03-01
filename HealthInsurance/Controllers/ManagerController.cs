@@ -33,8 +33,8 @@ namespace HealthInsurance.Controllers
                         from table3 in dt3.DefaultIfEmpty()
                         select new RequestListViewModel
                         {
-                            Customer = table1 
-                            
+                            Customer = table1
+
                         };
 
             if (!string.IsNullOrEmpty(SearchString))
@@ -69,17 +69,19 @@ namespace HealthInsurance.Controllers
                     RequestListViewModel RequestListViewModel = new RequestListViewModel();
                     RequestListViewModel.Customer = customer;
                     RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
+
                     foreach (var policyRequest in RequestListViewModel.PolicyRequests)
                     {
                         RequestListViewModel.Amount += policyRequest.Policy.Amount;
                         RequestListViewModel.Emi += policyRequest.Policy.Emi;
                     }
                     RequestListViewModel.Status = RequestListViewModel.PolicyRequests.Select(x => x.Status).FirstOrDefault();
+
                     RequestListViewModels.Add(RequestListViewModel);
                 }
                 return View(RequestListViewModels);
             }
-            
+
         }
 
         public IActionResult Detail(int? id)
