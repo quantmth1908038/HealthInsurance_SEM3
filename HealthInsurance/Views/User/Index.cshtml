@@ -1,0 +1,122 @@
+﻿@model HealthInsurance.Models.ViewModels.UserView
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<style>
+    dt {
+        border-bottom: 1px solid #bfbfbf;
+        margin: 0;
+        padding: 10px;
+    }
+
+    dd {
+        border-bottom: 1px solid #bfbfbf;
+        margin: 0;
+        padding: 10px;
+    }
+</style>
+
+<section id="main-content" style="margin-top: 40px">
+    <section class="wrapper">
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Policy
+                </div>
+                <div class="table-responsive" style=" border-bottom: 3px solid;padding: 30px;">
+                    <div>
+
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Name
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User.Customer.FirstName) @Html.DisplayFor(model => model.User.Customer.LastName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.User.Customer.Gender)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User.Customer.Gender)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.User.Customer.Address)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User.Customer.Address)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.User.Customer.City)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User.Customer.City)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.User.Customer.Contact)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User.Customer.Contact)
+                            </dd>
+                            @foreach (var policy in Model.User.Customer.policyRequests)
+                            {
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => policy.Policy.PolicyName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => policy.Policy.PolicyName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => policy.Policy.Amount)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => policy.Policy.Amount)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => policy.Policy.Emi)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => policy.Policy.Emi)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => policy.Policy.company.CompanyName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => policy.Policy.company.CompanyName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => policy.Policy.hospital.HospitalName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => policy.Policy.hospital.HospitalName)
+                                </dd>
+                            }
+                            <dt class="col-sm-2">
+                                Status
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Total Amount
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Amount)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Total Emi
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Emi)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div style="text-align: center">
+                        <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

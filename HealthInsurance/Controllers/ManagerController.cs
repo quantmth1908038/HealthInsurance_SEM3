@@ -22,24 +22,64 @@ namespace HealthInsurance.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string SearchString)
         {
-            var _customers = _context.Customers.ToList();
             List<RequestListViewModel> RequestListViewModels = new List<RequestListViewModel>();
-            foreach (var customer in _customers)
+            var PR = _context.Customers.Include(m => m.policyRequests).Include(m => m.policyRequests).ToList();
+            var data1 = from table1 in _context.Customers
+                        join table2 in _context.PolicyRequests on table1.CustomerId equals table2.CustomerId into dt2
+                        from table2 in dt2.DefaultIfEmpty()
+                        join table3 in _context.Policies on table2.PolicyId equals table3.PolicyId into dt3
+                        from table3 in dt3.DefaultIfEmpty()
+                        select new RequestListViewModel
+                        {
+                            Customer = table1 
+                            
+                        };
+
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                RequestListViewModel RequestListViewModel = new RequestListViewModel();
-                RequestListViewModel.Customer = customer;
-                RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
-                foreach (var policyRequest in RequestListViewModel.PolicyRequests)
-                {
-                    RequestListViewModel.Amount += policyRequest.Policy.Amount;
-                    RequestListViewModel.Emi += policyRequest.Policy.Emi;
-                }
-                RequestListViewModel.Status = RequestListViewModel.PolicyRequests.Select(x => x.Status).FirstOrDefault();
-                RequestListViewModels.Add(RequestListViewModel);
+                RequestListViewModel listCusRequest = new RequestListViewModel();
+                data1 = data1.Where(data1 => data1.PolicyRequests.FirstOrDefault().Customer.LastName.Contains(SearchString));
+                //var cusrequestlist = data1.Cast<RequestListViewModel>();
+                return View(data1.ToList());
+
+                //var _customers = _context.Customers.ToList();
+                //foreach (var customer in _customers)
+                //{
+                //    var Policy = customer.policyRequests.FirstOrDefault().Policy.PolicyName.FirstOrDefault();
+                //    RequestListViewModel RequestListViewModel = new RequestListViewModel();
+                //    RequestListViewModel.Customer = customer;
+                //    RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
+                //    foreach (var policyRequest in RequestListViewModel.PolicyRequests)
+                //    {
+                //        RequestListViewModel.Amount += policyRequest.Policy.Amount;
+                //        RequestListViewModel.Emi += policyRequest.Policy.Emi;
+                //    }
+                //    RequestListViewModel.Status = RequestListViewModel.PolicyRequests.Select(x => x.Status).FirstOrDefault();
+                //    RequestListViewModels.Add(RequestListViewModel);
+                //}
+                //return View(cusrequestlist.ToList());
             }
-            return View(RequestListViewModels);
+            else
+            {
+                var _customers = _context.Customers.ToList();
+                foreach (var customer in _customers)
+                {
+                    RequestListViewModel RequestListViewModel = new RequestListViewModel();
+                    RequestListViewModel.Customer = customer;
+                    RequestListViewModel.PolicyRequests = _context.PolicyRequests.Where(x => x.CustomerId == customer.CustomerId).Include(m => m.Policy);
+                    foreach (var policyRequest in RequestListViewModel.PolicyRequests)
+                    {
+                        RequestListViewModel.Amount += policyRequest.Policy.Amount;
+                        RequestListViewModel.Emi += policyRequest.Policy.Emi;
+                    }
+                    RequestListViewModel.Status = RequestListViewModel.PolicyRequests.Select(x => x.Status).FirstOrDefault();
+                    RequestListViewModels.Add(RequestListViewModel);
+                }
+                return View(RequestListViewModels);
+            }
+            
         }
 
         public IActionResult Detail(int? id)
@@ -69,7 +109,7 @@ namespace HealthInsurance.Controllers
                 PolicyRequests = _PolicyRequests,
                 Amount = Amount,
                 Emi = Emi,
-            }) ;
+            });
         }
 
         public IActionResult Confirm(int? id)

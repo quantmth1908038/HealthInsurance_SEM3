@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInsurance.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace HealthInsurance.Models.ViewModels
     {
         public List<int> ListPolicyIds { get; set; }
         public Customer Customer { get; set; }
+        public ApplicationUser User { get; set; }
     }
 
     public class CustomerListViewModel
