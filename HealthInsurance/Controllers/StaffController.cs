@@ -224,41 +224,41 @@ namespace HealthInsurance.Controllers
                     _Db.SaveChanges();
                 }
 
-                var messages = new MimeMessage();
-                //người gủi / email người gửi
-                messages.From.Add(new MailboxAddress("Insurance", ""));
-                //người nhận / email người nhận
-                //messages.Bcc.Add(new MailboxAddress("User", "toanit2001@gmail.com"));
-                messages.To.Add(new MailboxAddress("User", User.Email));
-                messages.Subject = "Health Insurance";
-                //nội dung email
+                //var messages = new MimeMessage();
+                ////người gủi / email người gửi
+                //messages.From.Add(new MailboxAddress("Insurance", ""));
+                ////người nhận / email người nhận
+                ////messages.Bcc.Add(new MailboxAddress("User", "toanit2001@gmail.com"));
+                //messages.To.Add(new MailboxAddress("User", User.Email));
+                //messages.Subject = "Health Insurance";
+                ////nội dung email
 
 
-                foreach (var policy in ListPolices)
-                {
+                //foreach (var policy in ListPolices)
+                //{
 
-                    messages.Body = new TextPart("html")
-                    {
-                        Text = "<div><h1>Health Insurance</h1>" +
-                        "<h3>Registered user email account : " + User.UserName + "</h3>" +
-                        "<p>Insurance purchased by the user: " + policy.PolicyName + "</p>" +
-                        "<p>" + policy.PolicyDesc + "</p>" +
-                        "<p>Total payable amount of the insurance package : " + Amount + "</p>" +
-                        "<p>Costs are payable within one year : " + Emi + "</p>" +
-                        "</div>"
-                    };
+                //    messages.Body = new TextPart("html")
+                //    {
+                //        Text = "<div><h1>Health Insurance</h1>" +
+                //        "<h3>Registered user email account : " + User.UserName + "</h3>" +
+                //        "<p>Insurance purchased by the user: " + policy.PolicyName + "</p>" +
+                //        "<p>" + policy.PolicyDesc + "</p>" +
+                //        "<p>Total payable amount of the insurance package : " + Amount + "</p>" +
+                //        "<p>Costs are payable within one year : " + Emi + "</p>" +
+                //        "</div>"
+                //    };
 
-                }
+                //}
 
 
-                using (var client = new SmtpClient())
-                {
-                    client.Connect("smtp.gmail.com", 587, false);
-                    //tài khoản email và mật khẩu email
-                    client.Authenticate("", "");
-                    client.Send(messages);
-                    client.Disconnect(true);
-                }
+                //using (var client = new SmtpClient())
+                //{
+                //    client.Connect("smtp.gmail.com", 587, false);
+                //    //tài khoản email và mật khẩu email
+                //    client.Authenticate("", "");
+                //    client.Send(messages);
+                //    client.Disconnect(true);
+                //}
 
                 return RedirectToAction("Index");
             }
