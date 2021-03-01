@@ -130,9 +130,13 @@ namespace HealthInsurance.Controllers
         {
             if (ModelState.IsValid)
             {
+                createViewModel.User.UserName = createViewModel.User.Email;
+                var result = await _userManager.CreateAsync(createViewModel.User, "123456");
+                var setRole = await _userManager.AddToRoleAsync(createViewModel.User, "User");
+                createViewModel.Customer.ApplicationUserId = createViewModel.User.Id;
                 _Db.Customers.Add(createViewModel.Customer);
                 _Db.SaveChanges();
-             
+                
                 var User = await _userManager.GetUserAsync(HttpContext.User);
                 var Employee = _Db.Employees.Where(x => x.ApplicationUserId == User.Id).FirstOrDefault();
                 PolicyApproval policyApproval = new PolicyApproval();

@@ -20,4 +20,12 @@ namespace HealthInsurance.Models.ViewModels
         public ApplicationUser User { get; set; }
         public IdentityRole Role { get; set; }
     }
+
+    public class UserView
+    {
+        public ApplicationUser User { get; set; }
+        public string Status { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Emi { get; set; }
+    }
 }
