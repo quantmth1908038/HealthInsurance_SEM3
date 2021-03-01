@@ -22,6 +22,7 @@ namespace HealthInsurance.Controllers
         private HealthInsuranceDbContext _repository;
         private RoleManager<IdentityRole> roleManager;
         private UserManager<ApplicationUser> _userManager;
+        private string searchString;
 
         public HomeController(HealthInsuranceDbContext repository, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
@@ -30,19 +31,51 @@ namespace HealthInsurance.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+
+        
+        public async Task<IActionResult> Index(string searchString)
         {
-            var ListUsers = _repository.Users.ToList();
+          
             List<ListUserRole> ListUserRoles = new List<ListUserRole>();
-            foreach (var user in ListUsers)
+            var data1 = from table1 in _repository.Users
+                        join table2 in _repository.UserRoles on table1.Id equals table2.UserId into dt2
+                        from table2 in dt2.DefaultIfEmpty()
+                        join table3 in _repository.Roles on table2.RoleId equals table3.Id into dt3
+                        from table3 in dt3.DefaultIfEmpty()
+                        select new ListUserRole
+                        {
+                            Role = table3,
+                            User = table1
+                        };
+            if (!string.IsNullOrEmpty(searchString))
             {
-                var UserRole = _repository.UserRoles.Where(x => x.UserId == user.Id).Select(x => x.RoleId).FirstOrDefault();
-                ListUserRole listUserRole = new ListUserRole
+                ListUserRole listUserRole = new ListUserRole();
+                data1 = data1.Where(data1 => data1.Role.Name.Contains(searchString) || data1.User.Email.Contains(searchString));
+                var userrolelist = data1.Cast<ListUserRole>();
+                return View(new UserListViewModel
                 {
-                    User = user,
-                    Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault()
-                };
-                ListUserRoles.Add(listUserRole);
+                    TotalUser = _repository.Users.Count(),
+                    TotalPolicyRequest = _repository.PolicyRequests.Count(),
+                    TotalPolicyAction = _repository.PolicyActions.Count(),
+                    ListUserRoles = userrolelist.ToList(),
+                });
+            }
+            else
+            {
+                var ListUsers = _repository.Users.ToList();
+               
+
+                foreach (var user in ListUsers)
+                {
+                    var UserRole = _repository.UserRoles.Where(x => x.UserId == user.Id).Select(x => x.RoleId).FirstOrDefault();
+                    ListUserRole listUserRole = new ListUserRole
+                    {
+                        User = user,
+                        Role = roleManager.Roles.Where(r => r.Id == UserRole).FirstOrDefault(),
+                       
+                    };
+                    ListUserRoles.Add(listUserRole);
+                }
             }
 
             return View(new UserListViewModel
@@ -50,14 +83,18 @@ namespace HealthInsurance.Controllers
                 TotalUser = _repository.Users.Count(),
                 TotalPolicyRequest = _repository.PolicyRequests.Count(),
                 TotalPolicyAction = _repository.PolicyActions.Count(),
-                ListUserRoles = ListUserRoles
+                ListUserRoles = ListUserRoles,
+
+
             });
+
         }
 
         [HttpGet]
         public IActionResult EditUser(string UserId)
         {
-            return View(new SetUserRole {
+            return View(new SetUserRole
+            {
                 User = _repository.Users.Where(x => x.Id == UserId).FirstOrDefault(),
                 Roles = roleManager.Roles.ToList()
             });
@@ -97,7 +134,7 @@ namespace HealthInsurance.Controllers
             _employee.FirstName = employee.FirstName;
             _employee.LastName = employee.LastName;
             _repository.Employees.Add(_employee);
-            _repository.SaveChanges();;
+            _repository.SaveChanges(); ;
             return RedirectToAction("Index");
         }
 

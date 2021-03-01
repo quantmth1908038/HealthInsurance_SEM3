@@ -23,14 +23,38 @@ namespace HealthInsurance.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+           
+            List<ApprovalListViewModel> ApprovalListViewModel = new List<ApprovalListViewModel>();
+            var PR = _context.PolicyRequests.Include(m => m.Policy).Include(m => m.policyApproval).ToList();
+            var data1 = from table1 in _context.Customers
+                        join table2 in _context.PolicyRequests on table1.CustomerId equals table2.CustomerId into dt2
+                        from table2 in dt2.DefaultIfEmpty()
+                        select new ApprovalListViewModel
+                        {                       
+                            Customer = table1
+                        };
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                ApprovalListViewModel approlist = new ApprovalListViewModel();
+                data1 = data1.Where(data1 => data1.Customer.LastName.Contains(searchString));
+                var viewlistcus = data1.Cast<ApprovalListViewModel>();
+
+                return View(viewlistcus.ToList());
+
+            }
+            else
+            {
+                
+            }
+
             var _PolicyRequest = _context.PolicyRequests.ToList();
             var _PolicyApproval = _context.PolicyApprovals.ToList();
             var _PolicyAction = _context.PolicyActions.ToList();
             var _customers = _context.Customers.ToList();
             List<ApprovalListViewModel> approvalListViewModels = new List<ApprovalListViewModel>();
-            foreach(var customer in _customers)
+            foreach (var customer in _customers)
             {
                 ApprovalListViewModel approvalListViewModel = new ApprovalListViewModel();
                 approvalListViewModel.Customer = customer;
@@ -41,7 +65,7 @@ namespace HealthInsurance.Controllers
                 }
                 approvalListViewModels.Add(approvalListViewModel);
             }
-            
+
             return View(approvalListViewModels);
         }
 

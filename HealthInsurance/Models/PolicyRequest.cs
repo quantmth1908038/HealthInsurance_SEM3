@@ -28,5 +28,10 @@ namespace HealthInsurance.Models
         public Customer Customer { get; set; }
         public Policy Policy { get; set; }
         public PolicyApproval policyApproval { get; set; }
+
+        public static implicit operator string(PolicyRequest v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

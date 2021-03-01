@@ -21,52 +21,58 @@
                         </div>
 
                     </div>*@
-                <div class="table-responsive">
-                    <table class="table table-striped b-t b-light">
-                        <thead>
-                            <tr>
-                                <th style="width:20px;">
-                                    <label class="i-checks m-b-none">
-                                        <input type="checkbox"><i></i>
-                                    </label>
-                                </th>
+            <div class="table-responsive">
+                <form asp-controller="Financialmanagrment" asp-action="Index" method="post" style=" padding: 5px 0 5px 14px; ">
+                    <p>
+                        <input type="text" name="SearchString" />
+                        <input type="submit" id="Search" value="Search" />
+                    </p>
+                </form>
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;">
+                                <label class="i-checks m-b-none">
+                                    <input type="checkbox"><i></i>
+                                </label>
+                            </th>
 
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Customer.Gender)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Customer.City)
-                                </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Customer.Gender)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Customer.City)
+                            </th>
 
-                                <th>
-                                    Date
-                                </th>
-                                <th>
-                                    Amount
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th>
-                                    Reason
-                                </th>
-                                <th style="width:30px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Reason
+                            </th>
+                            <th style="width:30px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
                                 <td>
-
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Customer.FirstName)  @Html.DisplayFor(modelItem => item.Customer.LastName)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Gender)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Customer.City)
@@ -91,10 +97,10 @@
                                     @Html.ActionLink("Detail", "Detail", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
                                 </td>
                             </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
             </div>
         </div>
