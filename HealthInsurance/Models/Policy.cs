@@ -11,12 +11,15 @@ namespace HealthInsurance.Models
         public int PolicyId { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string PolicyName { get; set; }
-        [Column(TypeName = "ntext")]
+        [Column(TypeName = "Ntext")]
         public string PolicyDesc { get; set; }
         [Column(TypeName = "decimal(8,2)")]
         public decimal Amount { get; set; }
         [Column(TypeName = "decimal(8,2)")]
         public decimal Emi { get; set; }
+
+        [Column (TypeName = "text")]
+        public string UrlDetail { get; set; }
 
         public int CompanyId { get; set; }
         [Column(TypeName = "varchar(50)")]

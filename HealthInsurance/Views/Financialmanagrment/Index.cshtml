@@ -77,8 +77,6 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Customer.City)
                                 </td>
-
-
                                 <td>
                                     @Html.DisplayFor(modelItem => item.policyApproval.Date)
                                 </td>
@@ -93,7 +91,6 @@
                                 </td>
 
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { @class = "btn btn-success" }) |
                                     @Html.ActionLink("Detail", "Detail", new { id = item.Customer.CustomerId }, new { @class = "btn btn-danger", onclick = "return confirm('Do you really want this record?')" })
                                 </td>
                             </tr>
