@@ -148,5 +148,23 @@ namespace HealthInsurance.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [AllowAnonymous]
+        public IActionResult Hospital()
+        {
+            return View(_repository.Hospitals);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Company()
+        {
+            return View(_repository.Companies);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Policies()
+        {
+            return View(_repository.Policies);
+        }
     }
 }

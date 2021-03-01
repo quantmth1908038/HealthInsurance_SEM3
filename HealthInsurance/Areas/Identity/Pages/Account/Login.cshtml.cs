@@ -120,6 +120,10 @@ namespace HealthInsurance.Areas.Identity.Pages.Account
                     {
                         return RedirectToAction("Index", "Staff");
                     }
+                    if (roleName.FirstOrDefault() == "User")
+                    {
+                        return RedirectToAction("Index", "User");
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -22,32 +22,21 @@ namespace HealthInsurance.Controllers
             context = ctx;
             _userManager = userManager;
         }
-        public IActionResult Hospital()
-        {
-            return View(context.Hospitals);
-        }
-
-        public IActionResult Company()
-        {
-            return View(context.Companies);
-        }
-        public IActionResult Policies()
-        {
-            return View(context.Policies);
-        }
+        
 
         public async Task<IActionResult> Index()
         {
-            var customer = context.Customers.Include(x => x.policyRequests);
-            var PolicyRequest = context.PolicyRequests.Include(x => x.Policy).Include(x => x.policyApproval);
             var User = await _userManager.GetUserAsync(HttpContext.User);
             UserView userView = new UserView();
             userView.User = User;
+            userView.Customer = context.Customers.Where(x => x.ApplicationUserId == User.Id).Include(x => x.policyRequests).FirstOrDefault();
+            var PolicyRequest = context.PolicyRequests.Include(x => x.Policy).Include(x => x.policyApproval);
+            
 
-            if (User.Customer.policyRequests != null)
+            if (userView.Customer.policyRequests != null)
             {
-                var StatusRequest = User.Customer.policyRequests.FirstOrDefault().Status;
-                var StatusApproval = User.Customer.policyRequests.FirstOrDefault().policyApproval.Status;
+                var StatusRequest = userView.Customer.policyRequests.FirstOrDefault().Status;
+                var StatusApproval = userView.Customer.policyRequests.FirstOrDefault().policyApproval.Status;
                 if (StatusRequest == "No")
                 {
                     userView.Status = "Unsuccess Request";
