@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace HealthInsurance.Controllers
 {
@@ -135,12 +137,26 @@ namespace HealthInsurance.Controllers
              
                 var User = await _userManager.GetUserAsync(HttpContext.User);
                 var Employee = _Db.Employees.Where(x => x.ApplicationUserId == User.Id).FirstOrDefault();
+                List<Policy> ListPolices = new List<Policy>();
+                List<PolicyRequest> requestDate = new List<PolicyRequest>();
+
+                decimal Amount = new decimal();
+                decimal Emi = new decimal();
+
+
                 PolicyApproval policyApproval = new PolicyApproval();
                 _Db.PolicyApprovals.Add(policyApproval);
                 _Db.SaveChanges();
 
                 foreach (var id in createViewModel.ListPolicyIds)
                 {
+
+                    var Policy = _Db.Policies.Where(x => x.PolicyId == id).Include(m => m.company).Include(m => m.hospital).FirstOrDefault();
+                    ListPolices.Add(Policy);
+
+                    Amount += Policy.Amount;
+                    Emi += Policy.Emi;
+
                     PolicyRequest policyRequest = new PolicyRequest();
                     policyRequest.CustomerId = createViewModel.Customer.CustomerId;
                     policyRequest.EmployeeId = Employee.EmployeeId;
@@ -150,6 +166,42 @@ namespace HealthInsurance.Controllers
                     policyRequest.Status = "No";
                     _Db.PolicyRequests.Add(policyRequest);
                     _Db.SaveChanges();
+                }
+
+                var messages = new MimeMessage();
+                //người gủi / email người gửi
+                messages.From.Add(new MailboxAddress("Insurance", ""));
+                //người nhận / email người nhận
+                //messages.Bcc.Add(new MailboxAddress("User", "toanit2001@gmail.com"));
+                messages.To.Add(new MailboxAddress("User", User.Email));
+                messages.Subject = "Health Insurance";
+                //nội dung email
+
+
+                foreach (var policy in ListPolices)
+                {
+
+                    messages.Body = new TextPart("html")
+                    {
+                        Text = "<div><h1>Health Insurance</h1>" +
+                        "<h3>Registered user email account : " + User.UserName + "</h3>" +
+                        "<p>Insurance purchased by the user: " + policy.PolicyName + "</p>" +
+                        "<p>" + policy.PolicyDesc + "</p>" +
+                        "<p>Total payable amount of the insurance package : " + Amount + "</p>" +
+                        "<p>Costs are payable within one year : " + Emi + "</p>" +
+                        "</div>"
+                    };
+
+                }
+
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+                    //tài khoản email và mật khẩu email
+                    client.Authenticate("", "");
+                    client.Send(messages);
+                    client.Disconnect(true);
                 }
 
                 return RedirectToAction("Index");
